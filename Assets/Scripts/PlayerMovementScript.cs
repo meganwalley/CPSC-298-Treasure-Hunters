@@ -6,6 +6,7 @@ public class PlayerMovementScript : MonoBehaviour
 {
     new Rigidbody2D body;
     string direction;
+    string colDirection;
     float movement = 4;
     /*
      height = 1;
@@ -16,6 +17,7 @@ public class PlayerMovementScript : MonoBehaviour
      */
 
     bool inControl = true;
+    bool col = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -47,38 +49,52 @@ public class PlayerMovementScript : MonoBehaviour
         }
     }
 
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag.Equals("WallCollider"))
+        {
+            col = true;
+        }
+    }
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag.Equals("WallCollider"))
+            col = false;
+    }
     private void FixedUpdate()
     {
+
         switch(direction)
         {
             case "N":
                 body.velocity = new Vector2(0, 1F* movement);
                 break;
             case "NE":
-                body.velocity = new Vector2(1F* movement, 0.75F * movement);
+                body.velocity = new Vector2(1F* movement, 0.5F * movement);
                 break;
             case "E":
                 body.velocity = new Vector2(1.5F * movement, 0);
                 break;
             case "SE":
-                body.velocity = new Vector2(1F * movement, -0.75F * movement);
+                body.velocity = new Vector2(1F * movement, -0.5F * movement);
                 break;
             case "S":
                 body.velocity = new Vector2(0, -1F * movement);
                 break;
             case "SW":
-                body.velocity = new Vector2(-0.75F * movement, -0.75F * movement);
+                body.velocity = new Vector2(-0.5F * movement, -0.5F * movement);
                 break;
             case "W":
-                body.velocity = new Vector2(-0.5F * movement, 0);
+                body.velocity = new Vector2(-0.6F * movement, 0);
                 break;
             case "NW":
-                body.velocity = new Vector2(-0.75F * movement, 0.75F * movement);
+                body.velocity = new Vector2(-0.5F * movement, 0.5F * movement);
                 break;
             default:
                 body.velocity = new Vector2(0, 0);
                 break;
         }
+        body.angularVelocity = 0;
     }
 
 }
