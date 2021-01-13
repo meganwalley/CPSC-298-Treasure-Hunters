@@ -9,11 +9,6 @@ public class PrefabSpawnerScript : MonoBehaviour
     public float minTime = 0.2F;
     public float maxTime = 3F;
     float timeRemaining = 0;
-    // Start is called before the first frame update
-    void Start()
-    {
-        timeRemaining = Random.Range(minTime, maxTime);
-    }
 
     // Update is called once per frame
     void Update()
