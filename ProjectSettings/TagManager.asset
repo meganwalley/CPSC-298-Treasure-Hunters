@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - WallCollider
+  - Treasure
   layers:
   - Default
   - TransparentFX
