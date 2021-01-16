@@ -1,12 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror;
 
 public class PlayerMovementScript : MonoBehaviour
 {
     new Rigidbody2D body;
     string direction;
-    string colDirection;
     float movement = 4;
     /*
      height = 1;
@@ -16,41 +16,37 @@ public class PlayerMovementScript : MonoBehaviour
      height right = 1.25;
      */
 
-    bool inControl = true;
+    public bool inControl = true;
+    bool isLocalPlayer = true;
     bool col = false;
     // Start is called before the first frame update
     void Start()
     {
-        body = GetComponent<Rigidbody2D>();
+        if (isLocalPlayer)
+            body = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (!isLocalPlayer)
+            return;
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
-        {
             direction = "N";
-        } else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
-        {
+        else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
             direction = "S";
-        } else
-        {
+        else
             direction = "";
-        }
-
         if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
-        {
             direction += "E";
-        }
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
-        {
             direction += "W";
-        }
     }
 
     void OnTriggerEnter2D(Collider2D collision)
     {
+        if (!isLocalPlayer)
+            return;
         if (collision.tag.Equals("WallCollider"))
         {
             col = true;
@@ -58,13 +54,18 @@ public class PlayerMovementScript : MonoBehaviour
     }
     void OnTriggerExit2D(Collider2D collision)
     {
+        if (!isLocalPlayer)
+            return;
         if (collision.tag.Equals("WallCollider"))
             col = false;
     }
     private void FixedUpdate()
     {
-
-        switch(direction)
+        if (!isLocalPlayer)
+            return;
+        if (!inControl)
+            return;
+        switch (direction)
         {
             case "N":
                 body.velocity = new Vector2(0, 1F* movement);
