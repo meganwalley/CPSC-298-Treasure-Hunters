@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Mirror; 
+using Mirror;
 
-public class PlayerMovementScript : NetworkBehaviour
+public class Player : NetworkBehaviour
 {
     Rigidbody2D body;
     string direction;
@@ -28,7 +28,7 @@ public class PlayerMovementScript : NetworkBehaviour
     }
     void Update()
     {
-        ReadMovementInput(); 
+        ReadMovementInput();
     }
     private void FixedUpdate()
     {
@@ -116,3 +116,4 @@ public class PlayerMovementScript : NetworkBehaviour
     }
 
 }
+
