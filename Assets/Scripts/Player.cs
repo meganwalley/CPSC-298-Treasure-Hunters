@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Mirror; 
+using Mirror;
 
-public class PlayerMovementScript : NetworkBehaviour
+public class Player : NetworkBehaviour
 {
     Rigidbody2D body;
     string direction;
+    string colDirection;
     float movement = 4;
     /*
      height = 1;
@@ -16,20 +17,18 @@ public class PlayerMovementScript : NetworkBehaviour
      height right = 1.25;
      */
 
-    public bool inControl = true;
-    bool isLocalPlayer = true;
+    bool inControl = true;
     bool col = false;
 
 
 
     void Start()
     {
-        if (isLocalPlayer)
-            body = GetComponent<Rigidbody2D>();
+        body = GetComponent<Rigidbody2D>();
     }
     void Update()
     {
-        ReadMovementInput(); 
+        ReadMovementInput();
     }
     private void FixedUpdate()
     {
@@ -66,19 +65,6 @@ public class PlayerMovementScript : NetworkBehaviour
             }
         }
     }
-    void OnTriggerExit2D(Collider2D collision)
-    {
-        if (!isLocalPlayer)
-            return;
-        if (collision.tag.Equals("WallCollider"))
-            col = false;
-    }
-    private void FixedUpdate()
-    {
-        if (!isLocalPlayer)
-            return;
-        if (!inControl)
-            return;
     private void ProcessMovementInput()
     {
         switch (direction)
@@ -130,3 +116,4 @@ public class PlayerMovementScript : NetworkBehaviour
     }
 
 }
+
