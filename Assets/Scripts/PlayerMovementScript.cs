@@ -7,7 +7,6 @@ public class PlayerMovementScript : NetworkBehaviour
 {
     Rigidbody2D body;
     string direction;
-    string colDirection;
     float movement = 4;
     /*
      height = 1;
@@ -17,14 +16,16 @@ public class PlayerMovementScript : NetworkBehaviour
      height right = 1.25;
      */
 
-    bool inControl = true;
+    public bool inControl = true;
+    bool isLocalPlayer = true;
     bool col = false;
 
 
 
     void Start()
     {
-        body = GetComponent<Rigidbody2D>();
+        if (isLocalPlayer)
+            body = GetComponent<Rigidbody2D>();
     }
     void Update()
     {
@@ -65,6 +66,19 @@ public class PlayerMovementScript : NetworkBehaviour
             }
         }
     }
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        if (!isLocalPlayer)
+            return;
+        if (collision.tag.Equals("WallCollider"))
+            col = false;
+    }
+    private void FixedUpdate()
+    {
+        if (!isLocalPlayer)
+            return;
+        if (!inControl)
+            return;
     private void ProcessMovementInput()
     {
         switch (direction)
