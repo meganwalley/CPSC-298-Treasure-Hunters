@@ -20,6 +20,8 @@ public class Player : NetworkBehaviour
     bool inControl = true;
     bool col = false;
 
+    int currScore = 0; 
+
 
 
     void Start()
@@ -113,6 +115,12 @@ public class Player : NetworkBehaviour
     {
         if (collision.tag.Equals("WallCollider"))
             col = false;
+    }
+
+    //Score
+    public void AddScore(int value)
+    {
+        currScore += value; 
     }
 
 }
