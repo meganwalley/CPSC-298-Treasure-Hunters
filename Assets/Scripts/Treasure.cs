@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror; 
 
-public class Treasure : MonoBehaviour
+public class Treasure : NetworkBehaviour
 {
 
     public int value;
@@ -37,7 +38,7 @@ public class Treasure : MonoBehaviour
 
     private void SoundEffect()
     {
-        audioSource.Play(); 
+        audioSource.Play();
     }
 
     private void AfterEffect()
