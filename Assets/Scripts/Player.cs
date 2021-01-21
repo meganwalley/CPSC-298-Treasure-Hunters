@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Mirror;
 
 public class Player : NetworkBehaviour
 {
+    //for movements and physics
     Rigidbody2D body;
     string direction;
     string colDirection;
@@ -17,10 +19,13 @@ public class Player : NetworkBehaviour
      height right = 1.25;
      */
 
-    bool inControl = true;
-    bool col = false;
 
-    int currScore = 0; 
+    bool inControl = true;
+    bool inWallCollision = false;
+
+    //for UI
+    int currScore = 0;
+    public GameObject ScoreBoard; 
 
 
 
@@ -108,20 +113,29 @@ public class Player : NetworkBehaviour
     {
         if (collision.tag.Equals("WallCollider"))
         {
-            col = true;
+            inWallCollision = true;
         }
     }
     void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.tag.Equals("WallCollider"))
-            col = false;
+            inWallCollision = false;
     }
+
 
     //Score
     public void AddScore(int value)
     {
-        currScore += value; 
+        currScore += value;
+        UpdateUI(); 
     }
 
+
+    //UI
+    public void UpdateUI()
+    {
+        Text scoreBoard = ScoreBoard.GetComponent<Text>(); 
+        scoreBoard.text = "Current Score: " + currScore; 
+    }
 }
 

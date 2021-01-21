@@ -25,10 +25,8 @@ public class Treasure : MonoBehaviour
         {
             TriggerEffect(collidedObject);
             SoundEffect();
-
+            AfterEffect();
         }
-
-        AfterEffect(); 
     }
 
     private void TriggerEffect(GameObject collidedObject)

@@ -3009,15 +3009,15 @@ MonoBehaviour:
   autoStartServerBuild: 1
   showDebugMessages: 0
   serverTickRate: 30
-  offlineScene: 
-  onlineScene: 
+  offlineScene: Assets/Scenes/MenuScene.unity
+  onlineScene: Assets/Scenes/GameScene.unity
   transport: {fileID: 1327164292}
   networkAddress: localhost
   maxConnections: 4
   disconnectInactiveConnections: 0
   disconnectInactiveTimeout: 60
   authenticator: {fileID: 0}
-  playerPrefab: {fileID: 8292518620840648970, guid: 0585fbe5ad706044b9467411b819be20, type: 3}
+  playerPrefab: {fileID: 5767399194637315673, guid: 0585fbe5ad706044b9467411b819be20, type: 3}
   autoCreatePlayer: 1
   playerSpawnMethod: 0
   spawnPrefabs: []
