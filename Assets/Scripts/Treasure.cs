@@ -7,16 +7,20 @@ public class Treasure : MonoBehaviour
 
     public int value;
     private AudioSource audioSource;
+    public bool isActive = true; 
 
     private void Start()
     {
         audioSource = GetComponent<AudioSource>(); 
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    void OnTriggerEnter2D(Collider2D coll)
     {
-        Debug.Log("coin");
-        GameObject collidedObject = collision.gameObject; 
+        if (!isActive)
+        {
+            return; 
+        }
+        GameObject collidedObject = coll.gameObject; 
         if (collidedObject.CompareTag("Player"))
         {
             TriggerEffect(collidedObject);
@@ -24,7 +28,7 @@ public class Treasure : MonoBehaviour
 
         }
 
-        Destroy(gameObject); 
+        AfterEffect(); 
     }
 
     private void TriggerEffect(GameObject collidedObject)
@@ -36,6 +40,14 @@ public class Treasure : MonoBehaviour
     private void SoundEffect()
     {
         audioSource.Play(); 
+    }
+
+    private void AfterEffect()
+    {
+        Destroy(gameObject, audioSource.clip.length);
+        Color spriteColor = GetComponent<SpriteRenderer>().color;
+        spriteColor.a = 0f;
+        GetComponent<SpriteRenderer>().color = spriteColor; 
     }
 
 }

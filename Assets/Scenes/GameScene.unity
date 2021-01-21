@@ -3602,6 +3602,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1525209845}
   - component: {fileID: 1525209844}
+  - component: {fileID: 1525209849}
   - component: {fileID: 1525209843}
   - component: {fileID: 1525209846}
   - component: {fileID: 1525209847}
@@ -3707,6 +3708,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value: 1
+  isActive: 1
 --- !u!82 &1525209847
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3719,7 +3721,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: a9ed0defb52c704428df38452b197b04, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.572
+  m_Volume: 0.369
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -3819,6 +3821,27 @@ MonoBehaviour:
   serverOnly: 1
   m_AssetId: 
   hasSpawned: 0
+--- !u!50 &1525209849
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1525209842}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1540516192 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4743092109840741362, guid: 596b7e26fb8021548b7652683504c557, type: 3}
