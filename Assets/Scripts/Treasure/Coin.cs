@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using Mirror; 
 
-public class Treasure : NetworkBehaviour
+public class Coin : NetworkBehaviour
 {
     Rigidbody2D body;
 
     public int value;
     private AudioSource audioSource;
     public bool isActive = true;
+
+    public GameObject pickupEffect; 
 
     public float moveSpeed = 5f; //how fast this moves across the map
 
@@ -21,14 +23,14 @@ public class Treasure : NetworkBehaviour
 
     private void Update()
     {
-        UpdateLocation(); 
+        UpdatePosition(); 
     }
 
 
 
 
 
-    private void UpdateLocation()
+    private void UpdatePosition()
     {
         body.velocity = new Vector2(-moveSpeed, 0);
     }
@@ -64,7 +66,8 @@ public class Treasure : NetworkBehaviour
         Destroy(gameObject, audioSource.clip.length);
         Color spriteColor = GetComponent<SpriteRenderer>().color;
         spriteColor.a = 0f;
-        GetComponent<SpriteRenderer>().color = spriteColor; 
+        GetComponent<SpriteRenderer>().color = spriteColor;
+        Instantiate(pickupEffect, transform.position, Quaternion.identity);
     }
 
 }
