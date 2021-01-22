@@ -5,14 +5,32 @@ using Mirror;
 
 public class Treasure : NetworkBehaviour
 {
+    Rigidbody2D body;
 
     public int value;
     private AudioSource audioSource;
-    public bool isActive = true; 
+    public bool isActive = true;
+
+    public float moveSpeed = 5f; //how fast this moves across the map
 
     private void Start()
     {
-        audioSource = GetComponent<AudioSource>(); 
+        audioSource = GetComponent<AudioSource>();
+        body = GetComponent<Rigidbody2D>();
+    }
+
+    private void Update()
+    {
+        UpdateLocation(); 
+    }
+
+
+
+
+
+    private void UpdateLocation()
+    {
+        body.velocity = new Vector2(-moveSpeed, 0);
     }
 
     void OnTriggerEnter2D(Collider2D coll)

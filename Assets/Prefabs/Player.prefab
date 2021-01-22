@@ -168,6 +168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
+  moveSpeed: 3
   ScoreBoard: {fileID: 5767399194432840007}
 --- !u!114 &4275083337221708889
 MonoBehaviour:

@@ -8,6 +8,7 @@ public class Player : NetworkBehaviour
 {
     //for movements and physics
     Rigidbody2D body;
+    public int moveSpeed = 5; 
     string direction;
     string colDirection;
     float movement = 4;
@@ -77,28 +78,28 @@ public class Player : NetworkBehaviour
         switch (direction)
         {
             case "N":
-                body.velocity = new Vector2(0, 1F * movement);
+                body.velocity = new Vector2(0, moveSpeed * movement);
                 break;
             case "NE":
-                body.velocity = new Vector2(1F * movement, 0.5F * movement);
+                body.velocity = new Vector2(moveSpeed * movement, moveSpeed * movement);
                 break;
             case "E":
-                body.velocity = new Vector2(1.5F * movement, 0);
+                body.velocity = new Vector2(moveSpeed * movement, 0);
                 break;
             case "SE":
-                body.velocity = new Vector2(1F * movement, -0.5F * movement);
+                body.velocity = new Vector2(moveSpeed * movement, -moveSpeed * movement);
                 break;
             case "S":
-                body.velocity = new Vector2(0, -1F * movement);
+                body.velocity = new Vector2(0, -moveSpeed * movement);
                 break;
             case "SW":
-                body.velocity = new Vector2(-0.5F * movement, -0.5F * movement);
+                body.velocity = new Vector2(-moveSpeed * movement, -moveSpeed * movement);
                 break;
             case "W":
-                body.velocity = new Vector2(-0.6F * movement, 0);
+                body.velocity = new Vector2(-moveSpeed * movement, 0);
                 break;
             case "NW":
-                body.velocity = new Vector2(-0.5F * movement, 0.5F * movement);
+                body.velocity = new Vector2(-moveSpeed * movement, moveSpeed * movement);
                 break;
             default:
                 body.velocity = new Vector2(0, 0);
