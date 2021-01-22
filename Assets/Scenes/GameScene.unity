@@ -2613,7 +2613,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1054022377}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -18, y: -14.5, z: 0}
+  m_LocalPosition: {x: -18, y: -17, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 946982987}
@@ -3330,8 +3330,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1354946277}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.46, y: -1, z: 0}
-  m_LocalScale: {x: 2, y: 40, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2, y: 100, z: 1}
   m_Children: []
   m_Father: {fileID: 1693725758}
   m_RootOrder: 0
@@ -4113,7 +4113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85f99217ba1fac64dbc105d3137bf32e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnInterval: 120
+  spawnInterval: 150
   coinPrefab: {fileID: 2518945439772841190, guid: 91f5786403ad27648a8d6c0a858db2d6, type: 3}
   rubyPrefab: {fileID: 4459798096886664614, guid: 3dfd288f3ea099a4b8118fc054ae6cce, type: 3}
   treasureChestPrefab: {fileID: 0}
@@ -4126,7 +4126,7 @@ MonoBehaviour:
   - {fileID: 1560505435}
   - {fileID: 865533839}
   coinSpawnWeight: 10
-  rubbySpawnWeight: 10
+  rubbySpawnWeight: 2
   treasureChestSpawnWeight: 0
 --- !u!1001 &1615764855
 PrefabInstance:
@@ -4312,7 +4312,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1693725758}
   - component: {fileID: 1693725757}
-  - component: {fileID: 1693725759}
   - component: {fileID: 1693725760}
   - component: {fileID: 1693725756}
   m_Layer: 0
@@ -4363,25 +4362,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1693725755}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -33.500156, y: 1.3833787, z: 0.24596165}
+  m_LocalPosition: {x: -30, y: 1.3833787, z: 0.24596165}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1354946278}
   m_Father: {fileID: 1726883937}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1693725759
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1693725755}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ce7661e63415794ba27148ed46a2275, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &1693725760
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4406,7 +4393,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 38.497948}
+  m_Size: {x: 1, y: 100}
   m_EdgeRadius: 0
 --- !u!1 &1713922222
 GameObject:
