@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpinningCoin : MonoBehaviour
+public class RisingAndDisapearing : MonoBehaviour
 {
     Rigidbody2D body;
 
     private void Start()
     {
         body = GetComponent<Rigidbody2D>();
-        Destroy(gameObject, 500); 
+        Destroy(gameObject, 5); 
     }
     void Update()
     {

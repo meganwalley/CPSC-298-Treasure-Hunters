@@ -12,6 +12,7 @@ public class Ruby : NetworkBehaviour
     public bool isActive = true;
 
     public GameObject pickupEffect;
+    public GameObject textEffect; 
 
     public float moveSpeed = 10f; //how fast this moves across the map
     public float moveCount = 180f; //how long it will keep on current movement direction
@@ -82,6 +83,8 @@ public class Ruby : NetworkBehaviour
         spriteColor.a = 0f;
         GetComponent<SpriteRenderer>().color = spriteColor;
         Instantiate(pickupEffect, transform.position, Quaternion.identity);
+        GameObject textEffectInstante = Instantiate(textEffect, transform.position, Quaternion.identity);
+        textEffectInstante.GetComponent<SetTextMesh>().SetNewText("+" + value); 
     }
 
 }

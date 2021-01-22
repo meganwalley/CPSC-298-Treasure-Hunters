@@ -141,6 +141,7 @@ MonoBehaviour:
   value: 10
   isActive: 1
   pickupEffect: {fileID: 1166246568692766653, guid: f60001b3e937ceb4c9867f26e8eed468, type: 3}
+  textEffect: {fileID: 5022295227983901486, guid: 689e05f1c41d14443a6da66568b4c9ac, type: 3}
   moveSpeed: 10
   moveCount: 240
   currMoveCount: 0
@@ -153,7 +154,7 @@ AudioSource:
   m_GameObject: {fileID: 4459798096886664614}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 24300002, guid: 37e23a8e748eb274ca9185551062b52e, type: 2}
+  OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: a9ed0defb52c704428df38452b197b04, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.2

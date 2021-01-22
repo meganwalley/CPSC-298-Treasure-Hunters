@@ -103,6 +103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   coinPrefab: {fileID: 2518945439772841190, guid: 91f5786403ad27648a8d6c0a858db2d6, type: 3}
   rubyPrefab: {fileID: 4459798096886664614, guid: 3dfd288f3ea099a4b8118fc054ae6cce, type: 3}
+  textEffect: {fileID: 5022295227983901486, guid: 689e05f1c41d14443a6da66568b4c9ac, type: 3}
   valueGood: 5
   valueBad: -5
   isGood: 1

@@ -7,7 +7,8 @@ public class TreasureChest : MonoBehaviour
     Rigidbody2D body;
     Animator animator;
     public GameObject coinPrefab;
-    public GameObject rubyPrefab; 
+    public GameObject rubyPrefab;
+    public GameObject textEffect; 
 
     public int valueGood = 1;   //treasure chest has 2 types, type 1 provide treasures after opening, type 2 contains trashes. 
     public int valueBad = -5;
@@ -87,7 +88,9 @@ public class TreasureChest : MonoBehaviour
         player.AddScore(valueGood);
         animator.SetBool("isOpened", true);
         animator.SetBool("isGood", true);
-        isReleasingTreasure = true; 
+        isReleasingTreasure = true;
+        GameObject textEffectInstante = Instantiate(textEffect, transform.position, Quaternion.identity);
+        textEffectInstante.GetComponent<SetTextMesh>().SetNewText("+" + valueGood);
     }
     private void TriggerBadEffect(GameObject collidedObject)
     {
@@ -95,6 +98,8 @@ public class TreasureChest : MonoBehaviour
         player.AddScore(valueBad);
         animator.SetBool("isOpened", true);
         animator.SetBool("isGood", false);
+        GameObject textEffectInstante = Instantiate(textEffect, transform.position, Quaternion.identity);
+        textEffectInstante.GetComponent<SetTextMesh>().SetNewText("-" + valueBad);
     }
 
     private void ReleaseTreasure()

@@ -142,6 +142,7 @@ MonoBehaviour:
   value: 1
   isActive: 1
   pickupEffect: {fileID: 6004768152418525863, guid: 47af306b1d428384eac582a373aa8524, type: 3}
+  textEffect: {fileID: 5022295227983901486, guid: 689e05f1c41d14443a6da66568b4c9ac, type: 3}
   moveSpeed: 5
 --- !u!114 &992101762254089983
 MonoBehaviour:

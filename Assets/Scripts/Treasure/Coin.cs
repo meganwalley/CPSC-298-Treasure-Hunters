@@ -10,7 +10,8 @@ public class Coin : NetworkBehaviour
     private AudioSource audioSource;
     public bool isActive = true;
 
-    public GameObject pickupEffect; 
+    public GameObject pickupEffect;
+    public GameObject textEffect;
 
     public float moveSpeed = 5f; //how fast this moves across the map
 
@@ -60,6 +61,8 @@ public class Coin : NetworkBehaviour
         spriteColor.a = 0f;
         GetComponent<SpriteRenderer>().color = spriteColor;
         Instantiate(pickupEffect, transform.position, Quaternion.identity);
+        GameObject textEffectInstante = Instantiate(textEffect, transform.position, Quaternion.identity);
+        textEffectInstante.GetComponent<SetTextMesh>().SetNewText("+" + value);
     }
 
 }
