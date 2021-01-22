@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TreasureSpawner : MonoBehaviour
+public class ObjectSpawner : MonoBehaviour
 {
     //time
     float timeRemaining = 0;
@@ -24,7 +24,7 @@ public class TreasureSpawner : MonoBehaviour
     {
         if(timeCount >= spawnInterval)
         {
-            WeightedRandomSpawn();
+            WeightedRandomTreasureSpawn();
             timeCount = 0; 
         }
         UpdateTimeCount();
@@ -38,7 +38,7 @@ public class TreasureSpawner : MonoBehaviour
 
 
 
-    private void WeightedRandomSpawn()
+    private void WeightedRandomTreasureSpawn()
     {
         int totalWeight = coinSpawnWeight + rubbySpawnWeight + treasureChestSpawnWeight;
         int randomNum = Random.Range(0, totalWeight); 
@@ -49,6 +49,10 @@ public class TreasureSpawner : MonoBehaviour
         else if(coinSpawnWeight < randomNum && randomNum <= (coinSpawnWeight + rubbySpawnWeight))
         {
             SpawnRubby();
+        }
+        else if((coinSpawnWeight + rubbySpawnWeight) < randomNum && randomNum <= (coinSpawnWeight + rubbySpawnWeight + treasureChestSpawnWeight))
+        {
+            SpawnTreasureChest(); 
         }
     }
 
@@ -66,6 +70,8 @@ public class TreasureSpawner : MonoBehaviour
     }
     public void SpawnTreasureChest()
     {
-
+        Instantiate(treasureChestPrefab,
+                spawnLocations[spawnLocations.Count-1].transform.position,
+                Quaternion.identity);
     }
 }

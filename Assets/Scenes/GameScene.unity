@@ -4116,7 +4116,7 @@ MonoBehaviour:
   spawnInterval: 150
   coinPrefab: {fileID: 2518945439772841190, guid: 91f5786403ad27648a8d6c0a858db2d6, type: 3}
   rubyPrefab: {fileID: 4459798096886664614, guid: 3dfd288f3ea099a4b8118fc054ae6cce, type: 3}
-  treasureChestPrefab: {fileID: 0}
+  treasureChestPrefab: {fileID: 3937381729578391708, guid: 8491b07e6267dd2438b2a1eb2aed1f77, type: 3}
   spawnLocations:
   - {fileID: 97887081}
   - {fileID: 1997370011}
@@ -4125,9 +4125,9 @@ MonoBehaviour:
   - {fileID: 731892541}
   - {fileID: 1560505435}
   - {fileID: 865533839}
-  coinSpawnWeight: 10
-  rubbySpawnWeight: 2
-  treasureChestSpawnWeight: 0
+  coinSpawnWeight: 60
+  rubbySpawnWeight: 25
+  treasureChestSpawnWeight: 15
 --- !u!1001 &1615764855
 PrefabInstance:
   m_ObjectHideFlags: 0
