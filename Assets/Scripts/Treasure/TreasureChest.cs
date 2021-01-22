@@ -13,11 +13,15 @@ public class TreasureChest : MonoBehaviour
     public int valueBad = -5;
 
     public bool isGood = true;
+    public bool isReleasingTreasure = false;
+    public int currTimeCount = 0;
+    public int releaseInterval = 30;
+    public int currReleaseCount = 0;
+    public int releaseCount = 10; 
 
     private AudioSource audioSource;
     public bool isActive = true;
 
-    public float moveSpeed = 5f; //how fast this moves across the map
 
     private void Start()
     {
@@ -28,17 +32,16 @@ public class TreasureChest : MonoBehaviour
 
     private void Update()
     {
-        UpdatePosition();
+        currTimeCount += 1; 
+        if (isReleasingTreasure && currTimeCount >= releaseInterval && currReleaseCount <= releaseCount )
+        {
+            ReleaseTreasure();
+            currReleaseCount += 1; 
+            currTimeCount = 0; 
+        }
     }
 
 
-
-
-
-    private void UpdatePosition()
-    {
-        body.velocity = new Vector2(-moveSpeed, 0);
-    }
 
     void OnTriggerEnter2D(Collider2D coll)
     {
@@ -84,7 +87,7 @@ public class TreasureChest : MonoBehaviour
         player.AddScore(valueGood);
         animator.SetBool("isOpened", true);
         animator.SetBool("isGood", true);
-        ReleaseTreasure(); 
+        isReleasingTreasure = true; 
     }
     private void TriggerBadEffect(GameObject collidedObject)
     {
@@ -96,36 +99,33 @@ public class TreasureChest : MonoBehaviour
 
     private void ReleaseTreasure()
     {
-        int spawnQuantity = Random.Range(8, 15); 
-        for(int i=0; i< spawnQuantity; ++i)
+        int randInt = Random.Range(1, 10);
+        if (1 <= randInt && randInt <= 8)
         {
-            int randInt = Random.Range(1, 10); 
-            if(1<=randInt && randInt <= 8)
-            {
-                SpawnCoin();
-            }
-            else
-            {
-                SpawnRuby(); 
-            }
+            SpawnCoin();
+        }
+        else
+        {
+            SpawnRuby();
         }
     }
 
     public void SpawnCoin()
     {
-        float randFloat1 = Random.Range(-1, 1);
-        float randFloat2 = Random.Range(-1, 1);
+        float randFloat1 = Random.Range(0, 1);
+        float randFloat2 = Random.Range(0, 3);
         Vector2 spawnPosition = transform.position;
         spawnPosition.x += randFloat1;
         spawnPosition.y += randFloat2; 
-        Instantiate(coinPrefab,
+        GameObject coinInstante = Instantiate(coinPrefab,
                 spawnPosition,
                 Quaternion.identity);
+        coinInstante.GetComponent<LeftMoving>().enabled = false; 
     }
     public void SpawnRuby()
     {
-        float randFloat1 = Random.Range(-1, 1);
-        float randFloat2 = Random.Range(-1, 1);
+        float randFloat1 = Random.Range(0, 1);
+        float randFloat2 = Random.Range(0, 3);
         Vector2 spawnPosition = transform.position;
         spawnPosition.x += randFloat1;
         spawnPosition.y += randFloat2;

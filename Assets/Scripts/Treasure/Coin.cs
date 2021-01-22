@@ -5,7 +5,6 @@ using Mirror;
 
 public class Coin : NetworkBehaviour
 {
-    Rigidbody2D body;
 
     public int value=1;
     private AudioSource audioSource;
@@ -18,22 +17,14 @@ public class Coin : NetworkBehaviour
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        body = GetComponent<Rigidbody2D>();
-    }
-
-    private void Update()
-    {
-        UpdatePosition(); 
     }
 
 
 
 
 
-    private void UpdatePosition()
-    {
-        body.velocity = new Vector2(-moveSpeed, 0);
-    }
+
+
 
     void OnTriggerEnter2D(Collider2D coll)
     {

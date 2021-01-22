@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3937381729578391707}
   - component: {fileID: 3937381729578391706}
   - component: {fileID: 3937381729578391704}
+  - component: {fileID: 1997668859033266732}
   - component: {fileID: 3937381729578391703}
   - component: {fileID: 3937381729578391709}
   - component: {fileID: 3937381729578391705}
@@ -105,7 +106,24 @@ MonoBehaviour:
   valueGood: 5
   valueBad: -5
   isGood: 1
+  isReleasingTreasure: 0
+  currTimeCount: 0
+  releaseInterval: 30
+  currReleaseCount: 0
+  releaseCount: 10
   isActive: 1
+--- !u!114 &1997668859033266732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3937381729578391708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6971d1847d5d9624b98474a3234774f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   moveSpeed: 5
 --- !u!50 &3937381729578391703
 Rigidbody2D:
@@ -153,7 +171,7 @@ AudioSource:
   m_GameObject: {fileID: 3937381729578391708}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 24300002, guid: 37e23a8e748eb274ca9185551062b52e, type: 2}
+  OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 70e25a71865826c4a9da5fab380ff0ad, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.369
