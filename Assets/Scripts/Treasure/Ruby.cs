@@ -1,29 +1,32 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Mirror; 
+using Mirror;
 
-public class Coin : NetworkBehaviour
+public class Ruby : NetworkBehaviour
 {
     Rigidbody2D body;
 
-    public int value=1;
+    public int value=10;
     private AudioSource audioSource;
     public bool isActive = true;
 
-    public GameObject pickupEffect; 
+    public GameObject pickupEffect;
 
-    public float moveSpeed = 5f; //how fast this moves across the map
+    public float moveSpeed = 10f; //how fast this moves across the map
+    public float moveCount = 180f; //how long it will keep on current movement direction
+    public float currMoveCount = 0f; 
 
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
         body = GetComponent<Rigidbody2D>();
+        MoveToNewDirection(); 
     }
 
     private void Update()
     {
-        UpdatePosition(); 
+        UpdatePosition();
     }
 
 
@@ -32,19 +35,29 @@ public class Coin : NetworkBehaviour
 
     private void UpdatePosition()
     {
-        body.velocity = new Vector2(-moveSpeed, 0);
+        currMoveCount += 1; 
+        if(currMoveCount >= moveCount)
+        {
+            MoveToNewDirection(); 
+            currMoveCount = 0; 
+        }
+    }
+    private void MoveToNewDirection()
+    {
+        float nextY = Random.Range(-moveSpeed, moveSpeed);
+        body.velocity = new Vector2(-moveSpeed, nextY);
     }
 
     void OnTriggerEnter2D(Collider2D coll)
     {
         if (!isActive)
         {
-            return; 
+            return;
         }
-        GameObject collidedObject = coll.gameObject; 
+        GameObject collidedObject = coll.gameObject;
         if (collidedObject.CompareTag("Player"))
         {
-            isActive = false; 
+            isActive = false;
             TriggerEffect(collidedObject);
             SoundEffect();
             AfterEffect();

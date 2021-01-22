@@ -11,7 +11,7 @@ public class TreasureSpawner : MonoBehaviour
 
     //Prefab
     public GameObject coinPrefab;
-    public GameObject rubbyPrefab;
+    public GameObject rubyPrefab;
     public GameObject treasureChestPrefab;
     public List<GameObject> spawnLocations;
 
@@ -45,7 +45,10 @@ public class TreasureSpawner : MonoBehaviour
         if(0 <= randomNum && randomNum <= coinSpawnWeight)
         {
             SpawnCoin();
-            Debug.Log("helo"); 
+        }
+        else if(coinSpawnWeight < randomNum && randomNum <= (coinSpawnWeight + rubbySpawnWeight))
+        {
+            SpawnRubby();
         }
     }
 
@@ -57,7 +60,9 @@ public class TreasureSpawner : MonoBehaviour
     }
     public void SpawnRubby()
     {
-
+        Instantiate(rubyPrefab,
+                spawnLocations[Random.Range(0, spawnLocations.Count)].transform.position,
+                Quaternion.identity);
     }
     public void SpawnTreasureChest()
     {

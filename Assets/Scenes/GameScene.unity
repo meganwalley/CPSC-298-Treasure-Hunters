@@ -4115,7 +4115,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnInterval: 120
   coinPrefab: {fileID: 2518945439772841190, guid: 91f5786403ad27648a8d6c0a858db2d6, type: 3}
-  rubbyPrefab: {fileID: 0}
+  rubyPrefab: {fileID: 4459798096886664614, guid: 3dfd288f3ea099a4b8118fc054ae6cce, type: 3}
   treasureChestPrefab: {fileID: 0}
   spawnLocations:
   - {fileID: 97887081}
@@ -4126,7 +4126,7 @@ MonoBehaviour:
   - {fileID: 1560505435}
   - {fileID: 865533839}
   coinSpawnWeight: 10
-  rubbySpawnWeight: 0
+  rubbySpawnWeight: 10
   treasureChestSpawnWeight: 0
 --- !u!1001 &1615764855
 PrefabInstance:
