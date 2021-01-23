@@ -6,6 +6,7 @@ public class Sinking : MonoBehaviour
 {
     Rigidbody2D body;
     public float moveSpeed = 5f; //how fast this moves across the map
+    public bool isSinking = true; 
 
 
     private void Start()
@@ -14,12 +15,28 @@ public class Sinking : MonoBehaviour
     }
     void Update()
     {
-        UpdatePosition();
+        if (isSinking)
+        {
+            UpdatePosition();
+        }
+        
     }
 
 
     private void UpdatePosition()
     {
-        body.velocity = new Vector2(0, -moveSpeed);
+        Vector2 force = body.velocity;
+        force.y = -moveSpeed;
+        body.velocity = force;
+    }
+
+    public void StopSinking()
+    {
+        isSinking = false; 
+    }
+
+    public void StartSinking()
+    {
+        isSinking = true; 
     }
 }

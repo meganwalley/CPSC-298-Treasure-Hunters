@@ -51,7 +51,7 @@ public class TreasureChest : MonoBehaviour
             return;
         }
         GameObject collidedObject = coll.gameObject;
-        if (collidedObject.CompareTag("Player"))
+        if (collidedObject.CompareTag("Player") && collidedObject.GetComponent<Player>().CheckCanPickUp())
         {
             isActive = false;
             DetermineChestType();

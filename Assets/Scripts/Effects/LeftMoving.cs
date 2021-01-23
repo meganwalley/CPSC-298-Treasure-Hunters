@@ -20,6 +20,8 @@ public class LeftMoving : MonoBehaviour
 
     private void UpdatePosition()
     {
-        body.velocity = new Vector2(-moveSpeed, 0);
+        Vector2 force = body.velocity;
+        force.x = -moveSpeed;
+        body.velocity = force; 
     }
 }

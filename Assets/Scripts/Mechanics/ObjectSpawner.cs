@@ -9,22 +9,33 @@ public class ObjectSpawner : MonoBehaviour
     float timeCount = 0;
     public float spawnInterval = 600; //how long the spawn cycle will be
 
-    //Prefab
+    //Prefab - Treasure
     public GameObject coinPrefab;
     public GameObject rubyPrefab;
     public GameObject treasureChestPrefab;
     public List<GameObject> spawnLocations;
 
+    //Prefab - Enemies
+    public GameObject jellyFishPrefab; 
+
+
     //these number represents how likely these items will be spawned
+    //for treasure
     public int coinSpawnWeight = 0;
     public int rubbySpawnWeight = 0;
     public int treasureChestSpawnWeight = 0;
+    public int emptyTreasureWeight = 0; 
+    //for enemies (calculated in a different pool from the treasures); 
+    public int jellyFishSpawnWeight = 0;
+    public int emptyEnemyWeight = 0; 
+
 
     private void Update()
     {
         if(timeCount >= spawnInterval)
         {
             WeightedRandomTreasureSpawn();
+            WeightedRandomEnemiesSpawn();
             timeCount = 0; 
         }
         UpdateTimeCount();
@@ -56,6 +67,28 @@ public class ObjectSpawner : MonoBehaviour
         }
     }
 
+    private void WeightedRandomEnemiesSpawn()
+    {
+        int totalWeight = jellyFishSpawnWeight + emptyEnemyWeight;
+        int randomNum = Random.Range(0, totalWeight);
+        if (0 <= randomNum && randomNum <= jellyFishSpawnWeight)
+        {
+            SpawnJellyFish();
+        }
+        //else if (jellyFishSpawnWeight < randomNum && randomNum <= (jellyFishSpawnWeight + emptyEnemyWeight))
+        //{
+
+        //}
+        //else if ((coinSpawnWeight + rubbySpawnWeight) < randomNum && randomNum <= (coinSpawnWeight + rubbySpawnWeight + treasureChestSpawnWeight))
+        //{
+        //    SpawnTreasureChest();
+        //}
+        else
+        {
+            //do nothing; 
+        }
+    }
+
     public void SpawnCoin()
     {
         Instantiate(coinPrefab,
@@ -72,6 +105,13 @@ public class ObjectSpawner : MonoBehaviour
     {
         Instantiate(treasureChestPrefab,
                 spawnLocations[spawnLocations.Count-1].transform.position,
+                Quaternion.identity);
+    }
+
+    public void SpawnJellyFish()
+    {
+        Instantiate(jellyFishPrefab,
+                spawnLocations[Random.Range(1, spawnLocations.Count - 1)].transform.position,
                 Quaternion.identity);
     }
 }

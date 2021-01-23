@@ -23,6 +23,7 @@ public class Player : NetworkBehaviour
 
     bool inControl = true;
     bool inWallCollision = false;
+    bool canPickUp = true; 
 
     //for UI
     int currScore = 0;
@@ -122,6 +123,45 @@ public class Player : NetworkBehaviour
         if (collision.tag.Equals("WallCollider"))
             inWallCollision = false;
     }
+
+    //Receiving Damage
+    public bool CheckCanPickUp()
+    {
+        return canPickUp; 
+    }
+
+    public void DamageEffect(int lastingTime)
+    {
+        canPickUp = false;
+        InvokeRepeating("SpriteFlashSwitch", 0, 0.1f);
+        Invoke("FinishDamage", lastingTime); 
+    }
+    public void FinishDamage()
+    {
+        CancelInvoke("SpriteFlashSwitch");
+        SpriteVisible();
+        canPickUp = true; 
+    }
+    private void SpriteFlashSwitch()
+    {
+        Color temp = GetComponentInChildren<SpriteRenderer>().material.color; 
+        if (temp.a != 1)
+        {
+            temp.a = 1;
+        }
+        else
+        {
+            temp.a = 0;
+        }
+        GetComponentInChildren<SpriteRenderer>().material.color = temp;
+    }
+    private void SpriteVisible()
+    {
+        Color temp = GetComponentInChildren<SpriteRenderer>().material.color;
+        temp.a = 1;
+        GetComponentInChildren<SpriteRenderer>().material.color = temp;
+    }
+
 
 
     //Score
