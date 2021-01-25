@@ -66,11 +66,19 @@ public class JellyFish : NetworkBehaviour
     {
         SoundEffect();
         isPopping = true;
+        if(sinking == null)
+        {
+            return; 
+        }
         sinking.StopSinking(); 
     }
 
     private void Popup()
     {
+        if(body == null)
+        {
+            return; 
+        }
         Vector2 force = body.velocity;
         force.y += moveSpeed;
         body.velocity = force;
@@ -118,6 +126,10 @@ public class JellyFish : NetworkBehaviour
 
     private void SoundEffect()
     {
+        if(audioSource == null)
+        {
+            return; 
+        }
         audioSource.clip = popSound;
         if (!audioSource.isPlaying)
         {

@@ -88,7 +88,7 @@ public class Anchor : NetworkBehaviour
 
     private void CheckLand()
     {
-        if(transform.position.y <= -8.98)
+        if(transform.position.y <= -8.98 && isActive)
         {
             LandEffect(); 
         }
@@ -96,9 +96,16 @@ public class Anchor : NetworkBehaviour
     private void LandEffect()
     {
         isActive = false;
-        body.velocity = Vector2.zero; 
+        if (body != null)
+        {
+            body.velocity = Vector2.zero;
+        }
         GetComponent<Sinking>().enabled = false;
         GetComponent<LeftMoving>().enabled = true;
+        if(audioSource == null)
+        {
+            return; 
+        }
         audioSource.clip = landSound;
         audioSource.Play();
         Invoke("SelfDestroy", 5); 

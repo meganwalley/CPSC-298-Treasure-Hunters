@@ -9,10 +9,12 @@ public class TreasureChest : NetworkBehaviour
     Animator animator;
     public GameObject coinPrefab;
     public GameObject rubyPrefab;
+    public GameObject coinEffect; 
     public GameObject textEffect; 
 
     public int valueGood = 1;   //treasure chest has 2 types, type 1 provide treasures after opening, type 2 contains trashes. 
     public int valueBad = -5;
+    public int valueVariation = 1; 
 
     public bool isGood = true;
     public bool isReleasingTreasure = false;
@@ -39,12 +41,12 @@ public class TreasureChest : NetworkBehaviour
     private void Update()
     {
         currTimeCount += 1; 
-        if (isReleasingTreasure && currTimeCount >= releaseInterval && currReleaseCount <= releaseCount )
-        {
-            ReleaseTreasure();
-            currReleaseCount += 1; 
-            currTimeCount = 0; 
-        }
+        //if (isReleasingTreasure && currTimeCount >= releaseInterval && currReleaseCount <= releaseCount )
+        //{
+        //    ReleaseTreasure();
+        //    currReleaseCount += 1; 
+        //    currTimeCount = 0; 
+        //}
     }
 
 
@@ -89,18 +91,24 @@ public class TreasureChest : NetworkBehaviour
     private void TriggerGoodEffect(GameObject collidedObject)
     {
         Player player = collidedObject.GetComponent<Player>();
-        player.AddScore(valueGood);
+        player.AddScore(Random.Range(valueGood - valueVariation, valueGood + valueVariation));
         animator.SetBool("isOpened", true);
         animator.SetBool("isGood", true);
         isReleasingTreasure = true;
         GameObject textEffectInstante = Instantiate(textEffect, transform.position, Quaternion.identity);
         textEffectInstante.GetComponent<RisingText>().content = "+" + valueGood;
         NetworkServer.Spawn(textEffectInstante);
+        GameObject coinEffectInstate = Instantiate(coinEffect, transform.position, Quaternion.identity);
+        NetworkServer.Spawn(coinEffectInstate); 
+        for(int i=0; i<12; ++i)
+        {
+            SpawnCoin(); 
+        }
     }
     private void TriggerBadEffect(GameObject collidedObject)
     {
         Player player = collidedObject.GetComponent<Player>();
-        player.AddScore(valueBad);
+        player.AddScore(Random.Range(valueBad - valueVariation, valueBad + valueVariation));
         animator.SetBool("isOpened", true);
         animator.SetBool("isGood", false);
         GameObject textEffectInstante = Instantiate(textEffect, transform.position, Quaternion.identity);
@@ -121,20 +129,21 @@ public class TreasureChest : NetworkBehaviour
         }
     }
 
+    [ClientRpc]
     public void SpawnCoin()
     {
-        float randFloat1 = Random.Range(0, 1);
+        float randFloat1 = Random.Range(-3, 3);
         float randFloat2 = Random.Range(0, 3);
         Vector2 spawnPosition = transform.position;
         spawnPosition.x += randFloat1;
         spawnPosition.y += randFloat2; 
-        GameObject coinInstante = Instantiate(coinPrefab,
+        GameObject coinInstante = Instantiate(coinEffect,
                 spawnPosition,
                 Quaternion.identity);
-        coinInstante.GetComponent<LeftMoving>().enabled = false;
+        //coinInstante.GetComponent<LeftMoving>().moveSpeed = 2;
         NetworkServer.Spawn(coinInstante);
     }
-
+    [ClientRpc]
     public void SpawnRuby()
     {
         float randFloat1 = Random.Range(0, 1);
@@ -148,7 +157,6 @@ public class TreasureChest : NetworkBehaviour
         NetworkServer.Spawn(rubyInstante);
     }
 
-    [Command]
     private void SoundEffect()
     {
         audioSource.Play();

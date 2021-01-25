@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror; 
 
-public class LeftMoving : MonoBehaviour
+public class LeftMoving : NetworkBehaviour
 {
     Rigidbody2D body;
+    [SyncVar]
     public float moveSpeed = 5f; //how fast this moves across the map
 
 

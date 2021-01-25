@@ -9,6 +9,7 @@ public class Coin : NetworkBehaviour
 
     public int value=1;
     private AudioSource audioSource;
+    [SyncVar (hook = nameof(SetVisibility))]
     public bool isActive = true;
 
     public GameObject pickupEffect;
@@ -24,6 +25,28 @@ public class Coin : NetworkBehaviour
         body.simulated = true;
 
         audioSource = GetComponent<AudioSource>();
+    }
+
+    public void Update()
+    {
+
+    }
+
+
+    private void SetVisibility(bool oldBool, bool newBool)
+    {
+        if(newBool == true)
+        {
+            Color spriteColor = GetComponent<SpriteRenderer>().color;
+            spriteColor.a = 1f;
+            GetComponent<SpriteRenderer>().color = spriteColor;
+        }
+        else
+        {
+            Color spriteColor = GetComponent<SpriteRenderer>().color;
+            spriteColor.a = 0f;
+            GetComponent<SpriteRenderer>().color = spriteColor;
+        }
     }
 
 
@@ -59,9 +82,6 @@ public class Coin : NetworkBehaviour
     private void AfterEffect()
     {
         Invoke("SelfDestroy", audioSource.clip.length); 
-        Color spriteColor = GetComponent<SpriteRenderer>().color;
-        spriteColor.a = 0f;
-        GetComponent<SpriteRenderer>().color = spriteColor;
         GameObject pickupEffectInstante = Instantiate(pickupEffect, transform.position, Quaternion.identity);
         NetworkServer.Spawn(pickupEffectInstante);
 
@@ -70,6 +90,7 @@ public class Coin : NetworkBehaviour
         NetworkServer.Spawn(textEffectInstante);
     }
 
+    [ClientRpc]
     private void SelfDestroy()
     {
         NetworkServer.Destroy(gameObject);

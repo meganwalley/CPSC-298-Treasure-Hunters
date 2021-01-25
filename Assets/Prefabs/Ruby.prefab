@@ -139,7 +139,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  value: 10
+  value: 20
   isActive: 1
   pickupEffect: {fileID: 1166246568692766653, guid: f60001b3e937ceb4c9867f26e8eed468, type: 3}
   textEffect: {fileID: 5022295227983901486, guid: 689e05f1c41d14443a6da66568b4c9ac, type: 3}

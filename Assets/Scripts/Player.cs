@@ -137,6 +137,7 @@ public class Player : NetworkBehaviour
         return canPickUp; 
     }
 
+    [ClientRpc]
     public void DamageEffect(int lastingTime)
     {
         if(canPickUp == false)
@@ -147,12 +148,14 @@ public class Player : NetworkBehaviour
         InvokeRepeating("SpriteFlashSwitch", 0, 0.1f);
         Invoke("FinishDamage", lastingTime);
     }
+    [ClientRpc]
     public void FinishDamage()
     {
         CancelInvoke("SpriteFlashSwitch");
         SpriteVisible();
         canPickUp = true; 
     }
+    [ClientRpc]
     private void SpriteFlashSwitch()
     {
         Color temp = GetComponentInChildren<SpriteRenderer>().material.color; 
@@ -166,6 +169,7 @@ public class Player : NetworkBehaviour
         }
         GetComponentInChildren<SpriteRenderer>().material.color = temp;
     }
+    [ClientRpc]
     private void SpriteVisible()
     {
         Color temp = GetComponentInChildren<SpriteRenderer>().material.color;

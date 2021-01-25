@@ -142,6 +142,10 @@ public class ObjectSpawner : NetworkManager
 
     public void SpawnCoin()
     {
+        if(gameObject == null)
+        {
+            return; 
+        }
         GameObject newObject = Instantiate(coinPrefab,
                 spawnLocations[Random.Range(0, spawnLocations.Count)].transform.position,
                 Quaternion.identity);

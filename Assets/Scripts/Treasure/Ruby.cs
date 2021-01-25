@@ -9,6 +9,8 @@ public class Ruby : NetworkBehaviour
 
     public int value=10;
     private AudioSource audioSource;
+
+    [SyncVar(hook = nameof(SetVisibility))]
     public bool isActive = true;
 
     public GameObject pickupEffect;
@@ -35,7 +37,21 @@ public class Ruby : NetworkBehaviour
     }
 
 
-
+    private void SetVisibility(bool oldBool, bool newBool)
+    {
+        if (newBool == true)
+        {
+            Color spriteColor = GetComponent<SpriteRenderer>().color;
+            spriteColor.a = 1f;
+            GetComponent<SpriteRenderer>().color = spriteColor;
+        }
+        else
+        {
+            Color spriteColor = GetComponent<SpriteRenderer>().color;
+            spriteColor.a = 0f;
+            GetComponent<SpriteRenderer>().color = spriteColor;
+        }
+    }
 
 
     private void UpdatePosition()
@@ -50,7 +66,10 @@ public class Ruby : NetworkBehaviour
     private void MoveToNewDirection()
     {
         float nextY = Random.Range(-moveSpeed, moveSpeed);
-        body.velocity = new Vector2(-moveSpeed, nextY);
+        if (body != null)
+        {
+            body.velocity = new Vector2(-moveSpeed, nextY);
+        }
     }
 
 
@@ -96,6 +115,7 @@ public class Ruby : NetworkBehaviour
         NetworkServer.Spawn(textEffectInstante);
     }
 
+    [ClientRpc]
     private void SelfDestroy()
     {
         NetworkServer.Destroy(gameObject);
