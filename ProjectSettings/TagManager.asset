@@ -6,6 +6,7 @@ TagManager:
   tags:
   - WallCollider
   - Treasure
+  - Boarder
   layers:
   - Default
   - TransparentFX

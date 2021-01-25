@@ -1,9 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Mirror; 
 
-public class Swordfish : NetworkBehaviour
+public class Anchor : MonoBehaviour
 {
     Rigidbody2D body;
 
@@ -13,27 +12,38 @@ public class Swordfish : NetworkBehaviour
 
     public GameObject textEffect;
 
-    public float moveSpeed = 5f; 
+    public float moveSpeed = 5f; //how fast this moves across the map
 
-    public AudioClip swimSound; 
+    public AudioClip swimSound;
     public AudioClip damageSound;
+    public AudioClip landSound;
+
+
+    private bool isActive = true; 
 
 
     private void Start()
     {
         body = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
-        SoundEffect(); 
+        SoundEffect();
     }
 
     private void Update()
     {
-
+        if (isActive)
+        {
+            CheckLand();
+        }
     }
 
 
-    void OnTriggerEnter2D(Collider2D coll)
+    private void OnCollisionEnter2D(Collision2D coll)
     {
+        if (!isActive)
+        {
+            return;
+        }
         GameObject collidedObject = coll.gameObject;
         if (collidedObject.CompareTag("Player"))
         {
@@ -44,10 +54,17 @@ public class Swordfish : NetworkBehaviour
         }
     }
 
+    void OnTriggerEnter2D(Collider2D coll)
+    {
+
+    }
+
     private void TriggerEffect(GameObject collidedObject)
     {
         Player player = collidedObject.GetComponent<Player>();
         player.AddScore(-damage);
+        Vector2 force = new Vector2(0, -moveSpeed); 
+        player.GetComponent<Rigidbody2D>().AddForce(force, ForceMode2D.Impulse); 
     }
     private void SoundEffect()
     {
@@ -65,5 +82,23 @@ public class Swordfish : NetworkBehaviour
     {
         GameObject textEffectInstante = Instantiate(textEffect, transform.position, Quaternion.identity);
         textEffectInstante.GetComponent<SetTextMesh>().SetNewText("-" + damage);
+    }
+
+    private void CheckLand()
+    {
+        if(transform.position.y <= -8.98)
+        {
+            LandEffect(); 
+        }
+    }
+    private void LandEffect()
+    {
+        isActive = false;
+        body.velocity = Vector2.zero; 
+        GetComponent<Sinking>().enabled = false;
+        GetComponent<LeftMoving>().enabled = true;
+        audioSource.clip = landSound;
+        audioSource.Play();
+        Destroy(gameObject, 5); 
     }
 }

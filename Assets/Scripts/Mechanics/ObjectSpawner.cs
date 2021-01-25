@@ -9,16 +9,22 @@ public class ObjectSpawner : MonoBehaviour
     float timeCount = 0;
     public float spawnInterval = 600; //how long the spawn cycle will be
 
+    //preset spawn points
+    public List<GameObject> spawnLocations;
+    public List<GameObject> upperSpawnLocations;
+
     //Prefab - Treasure
     public GameObject coinPrefab;
     public GameObject rubyPrefab;
     public GameObject treasureChestPrefab;
     public GameObject turtlePrefab;
-    public List<GameObject> spawnLocations;
 
     //Prefab - Enemies
     public GameObject jellyFishPrefab;
     public GameObject swordfishPrefab;
+    public GameObject anchorPrefab;
+    public GameObject smallSeaweedPrefab;
+    public GameObject bigSeaweedPrefab; 
 
 
     //these number represents how likely these items will be spawned
@@ -30,7 +36,10 @@ public class ObjectSpawner : MonoBehaviour
     public int emptyTreasureWeight = 0; 
     //for enemies (calculated in a different pool from the treasures); 
     public int jellyFishSpawnWeight = 0;
-    public int swordfishSpawnWeight = 0; 
+    public int swordfishSpawnWeight = 0;
+    public int anchorSpawnWeight = 0;
+    public int smallSeaweedSpawnWeight = 0;
+    public int bigSeaweedSpawnWeight = 0;
     public int emptyEnemyWeight = 0; 
 
 
@@ -55,7 +64,7 @@ public class ObjectSpawner : MonoBehaviour
 
     private void WeightedRandomTreasureSpawn()
     {
-        int totalWeight = coinSpawnWeight + rubbySpawnWeight + treasureChestSpawnWeight + turtleSpawnWeight + emptyEnemyWeight; 
+        int totalWeight = coinSpawnWeight + rubbySpawnWeight + treasureChestSpawnWeight + turtleSpawnWeight + emptyTreasureWeight; 
         int randomNum = Random.Range(0, totalWeight); 
         if(0 <= randomNum && randomNum <= coinSpawnWeight)
         {
@@ -81,7 +90,7 @@ public class ObjectSpawner : MonoBehaviour
 
     private void WeightedRandomEnemiesSpawn()
     {
-        int totalWeight = jellyFishSpawnWeight + emptyEnemyWeight;
+        int totalWeight = jellyFishSpawnWeight + swordfishSpawnWeight + anchorSpawnWeight + smallSeaweedSpawnWeight + bigSeaweedSpawnWeight + emptyEnemyWeight; 
         int randomNum = Random.Range(0, totalWeight);
         if (0 <= randomNum && randomNum <= jellyFishSpawnWeight)
         {
@@ -91,10 +100,18 @@ public class ObjectSpawner : MonoBehaviour
         {
             SpawnSwordfish(); 
         }
-        //else if ((coinSpawnWeight + rubbySpawnWeight) < randomNum && randomNum <= (coinSpawnWeight + rubbySpawnWeight + treasureChestSpawnWeight))
-        //{
-        //    SpawnTreasureChest();
-        //}
+        else if ((jellyFishSpawnWeight + swordfishSpawnWeight) < randomNum && randomNum <= (jellyFishSpawnWeight + swordfishSpawnWeight + anchorSpawnWeight))
+        {
+            SpawnAnchor();
+        }
+        else if ((jellyFishSpawnWeight + swordfishSpawnWeight + anchorSpawnWeight) < randomNum && randomNum <= (jellyFishSpawnWeight + swordfishSpawnWeight + anchorSpawnWeight + smallSeaweedSpawnWeight))
+        {
+            SpawnSmallSeaweed(); 
+        }
+        else if ((jellyFishSpawnWeight + swordfishSpawnWeight + anchorSpawnWeight + smallSeaweedSpawnWeight) < randomNum && randomNum <= (jellyFishSpawnWeight + swordfishSpawnWeight + anchorSpawnWeight + smallSeaweedSpawnWeight + bigSeaweedSpawnWeight))
+        {
+            SpawnBigSeaweed();
+        }
         else
         {
             //do nothing; 
@@ -136,6 +153,24 @@ public class ObjectSpawner : MonoBehaviour
     {
         Instantiate(swordfishPrefab,
                 spawnLocations[Random.Range(1, spawnLocations.Count - 2)].transform.position,
+                Quaternion.identity);
+    }
+    public void SpawnAnchor()
+    {
+        Instantiate(anchorPrefab,
+                upperSpawnLocations[Random.Range(1, spawnLocations.Count - 1)].transform.position,
+                Quaternion.identity);
+    }
+    public void SpawnSmallSeaweed()
+    {
+        Instantiate(smallSeaweedPrefab,
+                spawnLocations[spawnLocations.Count - 1].transform.position,
+                Quaternion.identity);
+    }
+    public void SpawnBigSeaweed()
+    {
+        Instantiate(bigSeaweedPrefab,
+                spawnLocations[spawnLocations.Count - 1].transform.position,
                 Quaternion.identity);
     }
 }

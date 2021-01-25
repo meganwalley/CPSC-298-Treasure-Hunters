@@ -8,7 +8,8 @@ public class Player : NetworkBehaviour
 {
     //for movements and physics
     Rigidbody2D body;
-    public int moveSpeed = 5; 
+    public int rawMoveSpeed = 5; 
+    private int moveSpeed = 5; 
     string direction;
     string colDirection;
     float movement = 4;
@@ -23,7 +24,8 @@ public class Player : NetworkBehaviour
 
     bool inControl = true;
     bool inWallCollision = false;
-    bool canPickUp = true; 
+    bool canPickUp = true;
+    bool isFlashing = false; 
 
     //for UI
     int currScore = 0;
@@ -34,6 +36,7 @@ public class Player : NetworkBehaviour
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
+        moveSpeed = rawMoveSpeed; 
     }
     void Update()
     {
@@ -132,9 +135,13 @@ public class Player : NetworkBehaviour
 
     public void DamageEffect(int lastingTime)
     {
+        if(canPickUp == false)
+        {
+            return; 
+        }
         canPickUp = false;
         InvokeRepeating("SpriteFlashSwitch", 0, 0.1f);
-        Invoke("FinishDamage", lastingTime); 
+        Invoke("FinishDamage", lastingTime);
     }
     public void FinishDamage()
     {
@@ -160,6 +167,14 @@ public class Player : NetworkBehaviour
         Color temp = GetComponentInChildren<SpriteRenderer>().material.color;
         temp.a = 1;
         GetComponentInChildren<SpriteRenderer>().material.color = temp;
+    }
+    public void SlowDownMoveSpeed(int amount)
+    {
+        moveSpeed -= amount; 
+    }
+    public void ResetMoveSpeed()
+    {
+        moveSpeed = rawMoveSpeed; 
     }
 
 

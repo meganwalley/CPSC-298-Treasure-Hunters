@@ -1,21 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Mirror; 
 
-public class Swordfish : NetworkBehaviour
+public class Seaweed : MonoBehaviour
 {
     Rigidbody2D body;
 
+    public int type = 1; //1 for big, 2 for small, this value is for position adjustment
     public int damage = 1;
     private AudioSource audioSource;
     //public bool isActive = true;
 
     public GameObject textEffect;
 
-    public float moveSpeed = 5f; 
+    public int moveSpeedDeduction = 5; 
 
-    public AudioClip swimSound; 
     public AudioClip damageSound;
 
 
@@ -23,7 +22,19 @@ public class Swordfish : NetworkBehaviour
     {
         body = GetComponent<Rigidbody2D>();
         audioSource = GetComponent<AudioSource>();
-        SoundEffect(); 
+
+        float adjustment = 0; 
+        switch (type)
+        {
+            case 1:
+                adjustment = 2.5f; 
+                break;
+            case 2:
+                adjustment = 1;
+                break; 
+        }
+        Vector2 newPosition = new Vector2(transform.position.x, transform.position.y + adjustment);
+        transform.position = newPosition; 
     }
 
     private void Update()
@@ -39,8 +50,16 @@ public class Swordfish : NetworkBehaviour
         {
             TriggerEffect(collidedObject);
             DamageSoundEffect();
-            collidedObject.GetComponent<Player>().DamageEffect(10);
             AfterEffect();
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D coll)
+    {
+        GameObject collidedObject = coll.gameObject;
+        if (collidedObject.CompareTag("Player"))
+        {
+            DeTriggerEffect(collidedObject); 
         }
     }
 
@@ -48,11 +67,13 @@ public class Swordfish : NetworkBehaviour
     {
         Player player = collidedObject.GetComponent<Player>();
         player.AddScore(-damage);
+        player.SlowDownMoveSpeed(moveSpeedDeduction); 
     }
-    private void SoundEffect()
+    private void DeTriggerEffect(GameObject collidedObject)
     {
-        audioSource.clip = swimSound;
-        audioSource.Play();
+        Player player = collidedObject.GetComponent<Player>();
+        player.AddScore(-damage);
+        player.ResetMoveSpeed(); 
     }
 
     private void DamageSoundEffect()
