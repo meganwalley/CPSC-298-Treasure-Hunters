@@ -9,7 +9,10 @@ public class RisingText : NetworkBehaviour
     Rigidbody2D body;
 
     private int timeBeforeFadingOut = 60;
-    private bool isFadingOut = false; 
+    private bool isFadingOut = false;
+
+    [SyncVar]
+    public string content; 
 
 
     void Start()
@@ -21,6 +24,7 @@ public class RisingText : NetworkBehaviour
 
     void Update()
     {
+        SetText(); 
         UpdatePosition();
         if (isFadingOut)
         {
@@ -44,6 +48,12 @@ public class RisingText : NetworkBehaviour
         GetComponent<MeshRenderer>().material.color = temp;
     }
 
+
+    public void SetText()
+    {
+        TextMesh textMesh = GetComponent<TextMesh>();
+        textMesh.text = content;
+    }
 
     private void SelfDestroy()
     {

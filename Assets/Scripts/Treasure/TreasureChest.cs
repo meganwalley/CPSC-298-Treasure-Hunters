@@ -94,7 +94,7 @@ public class TreasureChest : NetworkBehaviour
         animator.SetBool("isGood", true);
         isReleasingTreasure = true;
         GameObject textEffectInstante = Instantiate(textEffect, transform.position, Quaternion.identity);
-        textEffectInstante.GetComponent<SetTextMesh>().SetNewText("+" + valueGood);
+        textEffectInstante.GetComponent<RisingText>().content = "+" + valueGood;
         NetworkServer.Spawn(textEffectInstante);
     }
     private void TriggerBadEffect(GameObject collidedObject)
@@ -104,7 +104,7 @@ public class TreasureChest : NetworkBehaviour
         animator.SetBool("isOpened", true);
         animator.SetBool("isGood", false);
         GameObject textEffectInstante = Instantiate(textEffect, transform.position, Quaternion.identity);
-        textEffectInstante.GetComponent<SetTextMesh>().SetNewText("-" + valueBad);
+        textEffectInstante.GetComponent<RisingText>().content = "-" + valueBad;
         NetworkServer.Spawn(textEffectInstante);
     }
 
@@ -134,6 +134,7 @@ public class TreasureChest : NetworkBehaviour
         coinInstante.GetComponent<LeftMoving>().enabled = false;
         NetworkServer.Spawn(coinInstante);
     }
+
     public void SpawnRuby()
     {
         float randFloat1 = Random.Range(0, 1);
@@ -147,6 +148,7 @@ public class TreasureChest : NetworkBehaviour
         NetworkServer.Spawn(rubyInstante);
     }
 
+    [Command]
     private void SoundEffect()
     {
         audioSource.Play();

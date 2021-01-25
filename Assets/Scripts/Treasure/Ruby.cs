@@ -92,7 +92,7 @@ public class Ruby : NetworkBehaviour
         NetworkServer.Spawn(pickupEffectInstante);
 
         GameObject textEffectInstante = Instantiate(textEffect, transform.position, Quaternion.identity);
-        textEffectInstante.GetComponent<SetTextMesh>().SetNewText("+" + value);
+        textEffectInstante.GetComponent<RisingText>().content = "+" + value;
         NetworkServer.Spawn(textEffectInstante);
     }
 

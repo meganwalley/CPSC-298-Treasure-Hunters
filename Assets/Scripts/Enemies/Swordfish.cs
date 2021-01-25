@@ -68,7 +68,7 @@ public class Swordfish : NetworkBehaviour
     private void AfterEffect()
     {
         GameObject textEffectInstante = Instantiate(textEffect, transform.position, Quaternion.identity);
-        textEffectInstante.GetComponent<SetTextMesh>().SetNewText("-" + damage);
+        textEffectInstante.GetComponent<RisingText>().content = "-" + damage; 
         NetworkServer.Spawn(textEffectInstante);
     }
 }
