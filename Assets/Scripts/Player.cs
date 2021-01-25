@@ -184,6 +184,7 @@ public class Player : NetworkBehaviour
 
 
     //Score
+    [ClientRpc]
     public void AddScore(int value)
     {
         currScore += value;
