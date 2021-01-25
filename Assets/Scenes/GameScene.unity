@@ -3831,6 +3831,10 @@ MonoBehaviour:
   - {fileID: 2412284411774113747, guid: cb6de4441632b3b4caec30739abc7197, type: 3}
   - {fileID: 5202071984058981946, guid: 8c12d13f278cb754dbc18fecd0d3bc08, type: 3}
   - {fileID: 7500945211393026505, guid: c8ecc632ad1bacd4fa6b3fda4fe5dbc7, type: 3}
+  - {fileID: 5022295227983901486, guid: 689e05f1c41d14443a6da66568b4c9ac, type: 3}
+  - {fileID: 6004768152418525863, guid: 47af306b1d428384eac582a373aa8524, type: 3}
+  - {fileID: 1166246568692766653, guid: f60001b3e937ceb4c9867f26e8eed468, type: 3}
+  isStarted: 0
   spawnInterval: 150
   spawnLocations:
   - {fileID: 97887081}
@@ -5420,6 +5424,7 @@ GameObject:
   - component: {fileID: 1693725757}
   - component: {fileID: 1693725760}
   - component: {fileID: 1693725756}
+  - component: {fileID: 1693725759}
   m_Layer: 0
   m_Name: GarbageCollector
   m_TagString: Untagged
@@ -5460,6 +5465,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ce7661e63415794ba27148ed46a2275, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
 --- !u!4 &1693725758
 Transform:
   m_ObjectHideFlags: 0
@@ -5475,6 +5482,22 @@ Transform:
   m_Father: {fileID: 1726883937}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1693725759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1693725755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneId: 3002810823
+  serverOnly: 0
+  m_AssetId: 
+  hasSpawned: 0
 --- !u!61 &1693725760
 BoxCollider2D:
   m_ObjectHideFlags: 0

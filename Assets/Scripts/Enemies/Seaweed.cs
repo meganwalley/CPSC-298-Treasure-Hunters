@@ -91,5 +91,6 @@ public class Seaweed : NetworkBehaviour
     {
         GameObject textEffectInstante = Instantiate(textEffect, transform.position, Quaternion.identity);
         textEffectInstante.GetComponent<SetTextMesh>().SetNewText("-" + damage);
+        NetworkServer.Spawn(textEffectInstante);
     }
 }

@@ -1,16 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror; 
 
-public class DeleteTrashScript : MonoBehaviour
+public class DeleteTrashScript : NetworkBehaviour
 {
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Destroy(collision.gameObject);
+        NetworkServer.Destroy(collision.gameObject);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Destroy(collision.gameObject);
+        NetworkServer.Destroy(collision.gameObject);
     }
 }

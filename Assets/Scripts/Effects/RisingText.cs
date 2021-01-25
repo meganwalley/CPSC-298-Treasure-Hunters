@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI; 
+using UnityEngine.UI;
+using Mirror; 
 
-public class RisingText : MonoBehaviour
+public class RisingText : NetworkBehaviour
 {
     Rigidbody2D body;
 
@@ -14,7 +15,7 @@ public class RisingText : MonoBehaviour
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
-        Destroy(gameObject, 5);
+        Invoke("SelfDestroy", 5);
         Invoke("StartFadingOut", timeBeforeFadingOut / 60); 
     }
 
@@ -41,5 +42,11 @@ public class RisingText : MonoBehaviour
         Color temp = GetComponent<MeshRenderer>().material.color;
         temp.a -= 0.015f;
         GetComponent<MeshRenderer>().material.color = temp;
+    }
+
+
+    private void SelfDestroy()
+    {
+        NetworkServer.Destroy(gameObject);
     }
 }

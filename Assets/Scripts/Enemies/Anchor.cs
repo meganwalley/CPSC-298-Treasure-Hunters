@@ -83,6 +83,7 @@ public class Anchor : NetworkBehaviour
     {
         GameObject textEffectInstante = Instantiate(textEffect, transform.position, Quaternion.identity);
         textEffectInstante.GetComponent<SetTextMesh>().SetNewText("-" + damage);
+        NetworkServer.Spawn(textEffectInstante);
     }
 
     private void CheckLand()
@@ -100,6 +101,11 @@ public class Anchor : NetworkBehaviour
         GetComponent<LeftMoving>().enabled = true;
         audioSource.clip = landSound;
         audioSource.Play();
-        Destroy(gameObject, 5); 
+        Invoke("SelfDestroy", 5); 
+    }
+
+    private void SelfDestroy()
+    {
+        NetworkServer.Destroy(gameObject);
     }
 }

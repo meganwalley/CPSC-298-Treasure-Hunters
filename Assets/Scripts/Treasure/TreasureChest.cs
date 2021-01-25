@@ -95,6 +95,7 @@ public class TreasureChest : NetworkBehaviour
         isReleasingTreasure = true;
         GameObject textEffectInstante = Instantiate(textEffect, transform.position, Quaternion.identity);
         textEffectInstante.GetComponent<SetTextMesh>().SetNewText("+" + valueGood);
+        NetworkServer.Spawn(textEffectInstante);
     }
     private void TriggerBadEffect(GameObject collidedObject)
     {
@@ -104,6 +105,7 @@ public class TreasureChest : NetworkBehaviour
         animator.SetBool("isGood", false);
         GameObject textEffectInstante = Instantiate(textEffect, transform.position, Quaternion.identity);
         textEffectInstante.GetComponent<SetTextMesh>().SetNewText("-" + valueBad);
+        NetworkServer.Spawn(textEffectInstante);
     }
 
     private void ReleaseTreasure()

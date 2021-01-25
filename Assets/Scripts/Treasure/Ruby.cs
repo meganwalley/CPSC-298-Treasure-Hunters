@@ -84,13 +84,21 @@ public class Ruby : NetworkBehaviour
 
     private void AfterEffect()
     {
-        Destroy(gameObject, audioSource.clip.length);
+        Invoke("SelfDestroy", audioSource.clip.length);
         Color spriteColor = GetComponent<SpriteRenderer>().color;
         spriteColor.a = 0f;
         GetComponent<SpriteRenderer>().color = spriteColor;
-        Instantiate(pickupEffect, transform.position, Quaternion.identity);
+        GameObject pickupEffectInstante = Instantiate(pickupEffect, transform.position, Quaternion.identity);
+        NetworkServer.Spawn(pickupEffectInstante);
+
         GameObject textEffectInstante = Instantiate(textEffect, transform.position, Quaternion.identity);
-        textEffectInstante.GetComponent<SetTextMesh>().SetNewText("+" + value); 
+        textEffectInstante.GetComponent<SetTextMesh>().SetNewText("+" + value);
+        NetworkServer.Spawn(textEffectInstante);
+    }
+
+    private void SelfDestroy()
+    {
+        NetworkServer.Destroy(gameObject);
     }
 
 }
