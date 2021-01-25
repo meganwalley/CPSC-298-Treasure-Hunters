@@ -16,12 +16,16 @@ public class Ruby : NetworkBehaviour
 
     public float moveSpeed = 10f; //how fast this moves across the map
     public float moveCount = 180f; //how long it will keep on current movement direction
-    public float currMoveCount = 0f; 
+    public float currMoveCount = 0f;
 
-    private void Start()
+    public override void OnStartServer()
     {
-        audioSource = GetComponent<AudioSource>();
+        base.OnStartServer();
+
         body = GetComponent<Rigidbody2D>();
+        body.simulated = true;
+
+        audioSource = GetComponent<AudioSource>();
         MoveToNewDirection(); 
     }
 
@@ -49,6 +53,8 @@ public class Ruby : NetworkBehaviour
         body.velocity = new Vector2(-moveSpeed, nextY);
     }
 
+
+    [ServerCallback]
     void OnTriggerEnter2D(Collider2D coll)
     {
         if (!isActive)

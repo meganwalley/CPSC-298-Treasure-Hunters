@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 1039800219425335301}
   - component: {fileID: 1039800219425335297}
   - component: {fileID: 1039800219425335310}
+  - component: {fileID: 5912267335636540478}
   m_Layer: 0
   m_Name: Turtle
   m_TagString: Untagged
@@ -100,6 +101,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e5e6f026a85b7c459d64e50840d1ea2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   coinPrefab: {fileID: 2518945439772841190, guid: 91f5786403ad27648a8d6c0a858db2d6, type: 3}
   rubyPrefab: {fileID: 4459798096886664614, guid: 3dfd288f3ea099a4b8118fc054ae6cce, type: 3}
   isReleasingTreasure: 0
@@ -270,3 +273,21 @@ MonoBehaviour:
   serverOnly: 0
   m_AssetId: 
   hasSpawned: 0
+--- !u!114 &5912267335636540478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039800219425335300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f74aedd71d9a4f55b3ce499326d45fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  clientAuthority: 0
+  localPositionSensitivity: 0.01
+  localRotationSensitivity: 0.01
+  localScaleSensitivity: 0.01

@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 2412284411774113756}
   - component: {fileID: 2412284411774113757}
   - component: {fileID: 2412284411774113746}
+  - component: {fileID: -5041017755791649717}
   m_Layer: 0
   m_Name: Anchor
   m_TagString: Untagged
@@ -122,6 +123,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4504cf056032d44eab841e6f30fb043, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   damage: 50
   textEffect: {fileID: 5022295227983901486, guid: 689e05f1c41d14443a6da66568b4c9ac, type: 3}
   moveSpeed: 5
@@ -293,3 +296,21 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.6, y: 0.2}
   m_EdgeRadius: 0
+--- !u!114 &-5041017755791649717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2412284411774113747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f74aedd71d9a4f55b3ce499326d45fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  clientAuthority: 0
+  localPositionSensitivity: 0.01
+  localRotationSensitivity: 0.01
+  localScaleSensitivity: 0.01

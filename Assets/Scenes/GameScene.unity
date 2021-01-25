@@ -3784,7 +3784,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b0fecffa3f624585964b0d0eb21b18e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Port: 25565
+  Port: 7777
   NoDelay: 1
   Interval: 10
   FastResend: 2
@@ -3802,7 +3802,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1327164290}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8aab4c8111b7c411b9b92cf3dbc5bd4e, type: 3}
+  m_Script: {fileID: 11500000, guid: 85f99217ba1fac64dbc105d3137bf32e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   dontDestroyOnLoad: 1
@@ -3821,7 +3821,61 @@ MonoBehaviour:
   playerPrefab: {fileID: 5767399194637315673, guid: 0585fbe5ad706044b9467411b819be20, type: 3}
   autoCreatePlayer: 1
   playerSpawnMethod: 0
-  spawnPrefabs: []
+  spawnPrefabs:
+  - {fileID: 2518945439772841190, guid: 91f5786403ad27648a8d6c0a858db2d6, type: 3}
+  - {fileID: 4459798096886664614, guid: 3dfd288f3ea099a4b8118fc054ae6cce, type: 3}
+  - {fileID: 3937381729578391708, guid: 8491b07e6267dd2438b2a1eb2aed1f77, type: 3}
+  - {fileID: 1039800219425335300, guid: 3aa43462248562a499297bcc19d9dd58, type: 3}
+  - {fileID: 3336694328329913813, guid: 9d111c34b9df9994992c4c9aa292702d, type: 3}
+  - {fileID: 8567851323240511194, guid: 6c3c01c57a5640a4d82f16f00f605bab, type: 3}
+  - {fileID: 2412284411774113747, guid: cb6de4441632b3b4caec30739abc7197, type: 3}
+  - {fileID: 5202071984058981946, guid: 8c12d13f278cb754dbc18fecd0d3bc08, type: 3}
+  - {fileID: 7500945211393026505, guid: c8ecc632ad1bacd4fa6b3fda4fe5dbc7, type: 3}
+  spawnInterval: 150
+  spawnLocations:
+  - {fileID: 97887081}
+  - {fileID: 1997370011}
+  - {fileID: 1713922222}
+  - {fileID: 1039369778}
+  - {fileID: 731892541}
+  - {fileID: 1560505435}
+  - {fileID: 865533839}
+  - {fileID: 310854065}
+  - {fileID: 1771401663}
+  upperSpawnLocations:
+  - {fileID: 1660891911}
+  - {fileID: 1515681046}
+  - {fileID: 1701145925}
+  - {fileID: 1398898148}
+  - {fileID: 1370314954}
+  - {fileID: 1594670812}
+  - {fileID: 1515647498}
+  - {fileID: 1052734037}
+  - {fileID: 635940799}
+  - {fileID: 234111967}
+  - {fileID: 913431133}
+  - {fileID: 840019274}
+  - {fileID: 1646066652}
+  coinPrefab: {fileID: 2518945439772841190, guid: 91f5786403ad27648a8d6c0a858db2d6, type: 3}
+  rubyPrefab: {fileID: 4459798096886664614, guid: 3dfd288f3ea099a4b8118fc054ae6cce, type: 3}
+  treasureChestPrefab: {fileID: 3937381729578391708, guid: 8491b07e6267dd2438b2a1eb2aed1f77, type: 3}
+  turtlePrefab: {fileID: 1039800219425335300, guid: 3aa43462248562a499297bcc19d9dd58, type: 3}
+  jellyFishPrefab: {fileID: 3336694328329913813, guid: 9d111c34b9df9994992c4c9aa292702d, type: 3}
+  swordfishPrefab: {fileID: 8567851323240511194, guid: 6c3c01c57a5640a4d82f16f00f605bab, type: 3}
+  anchorPrefab: {fileID: 2412284411774113747, guid: cb6de4441632b3b4caec30739abc7197, type: 3}
+  smallSeaweedPrefab: {fileID: 5202071984058981946, guid: 8c12d13f278cb754dbc18fecd0d3bc08, type: 3}
+  bigSeaweedPrefab: {fileID: 7500945211393026505, guid: c8ecc632ad1bacd4fa6b3fda4fe5dbc7, type: 3}
+  coinSpawnWeight: 60
+  rubbySpawnWeight: 15
+  treasureChestSpawnWeight: 12
+  turtleSpawnWeight: 8
+  emptyTreasureWeight: 5
+  jellyFishSpawnWeight: 15
+  swordfishSpawnWeight: 10
+  anchorSpawnWeight: 10
+  smallSeaweedSpawnWeight: 30
+  bigSeaweedSpawnWeight: 30
+  emptyEnemyWeight: 5
 --- !u!4 &1327164294
 Transform:
   m_ObjectHideFlags: 0
@@ -3831,7 +3885,7 @@ Transform:
   m_GameObject: {fileID: 1327164290}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -4910,7 +4964,6 @@ GameObject:
   - component: {fileID: 1592794696}
   - component: {fileID: 1592794695}
   - component: {fileID: 1592794694}
-  - component: {fileID: 1592794697}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -4965,63 +5018,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1592794697
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1592794693}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85f99217ba1fac64dbc105d3137bf32e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnInterval: 150
-  spawnLocations:
-  - {fileID: 97887081}
-  - {fileID: 1997370011}
-  - {fileID: 1713922222}
-  - {fileID: 1039369778}
-  - {fileID: 731892541}
-  - {fileID: 1560505435}
-  - {fileID: 865533839}
-  - {fileID: 310854065}
-  - {fileID: 1771401663}
-  upperSpawnLocations:
-  - {fileID: 1660891911}
-  - {fileID: 1515681046}
-  - {fileID: 1701145925}
-  - {fileID: 1398898148}
-  - {fileID: 1370314954}
-  - {fileID: 1594670812}
-  - {fileID: 1515647498}
-  - {fileID: 1052734037}
-  - {fileID: 635940799}
-  - {fileID: 234111967}
-  - {fileID: 913431133}
-  - {fileID: 840019274}
-  - {fileID: 1646066652}
-  coinPrefab: {fileID: 2518945439772841190, guid: 91f5786403ad27648a8d6c0a858db2d6, type: 3}
-  rubyPrefab: {fileID: 4459798096886664614, guid: 3dfd288f3ea099a4b8118fc054ae6cce, type: 3}
-  treasureChestPrefab: {fileID: 3937381729578391708, guid: 8491b07e6267dd2438b2a1eb2aed1f77, type: 3}
-  turtlePrefab: {fileID: 1039800219425335300, guid: 3aa43462248562a499297bcc19d9dd58, type: 3}
-  jellyFishPrefab: {fileID: 3336694328329913813, guid: 9d111c34b9df9994992c4c9aa292702d, type: 3}
-  swordfishPrefab: {fileID: 8567851323240511194, guid: 6c3c01c57a5640a4d82f16f00f605bab, type: 3}
-  anchorPrefab: {fileID: 2412284411774113747, guid: cb6de4441632b3b4caec30739abc7197, type: 3}
-  smallSeaweedPrefab: {fileID: 5202071984058981946, guid: 8c12d13f278cb754dbc18fecd0d3bc08, type: 3}
-  bigSeaweedPrefab: {fileID: 7500945211393026505, guid: c8ecc632ad1bacd4fa6b3fda4fe5dbc7, type: 3}
-  coinSpawnWeight: 60
-  rubbySpawnWeight: 15
-  treasureChestSpawnWeight: 12
-  turtleSpawnWeight: 8
-  emptyTreasureWeight: 5
-  jellyFishSpawnWeight: 15
-  swordfishSpawnWeight: 10
-  anchorSpawnWeight: 10
-  smallSeaweedSpawnWeight: 30
-  bigSeaweedSpawnWeight: 30
-  emptyEnemyWeight: 5
 --- !u!1 &1594670812
 GameObject:
   m_ObjectHideFlags: 0

@@ -21,12 +21,16 @@ public class JellyFish : NetworkBehaviour
     private int popupCount = 0;
 
     public AudioClip popSound; 
-    public AudioClip damageSound; 
+    public AudioClip damageSound;
 
 
-    private void Start()
+    public override void OnStartServer()
     {
-        body = GetComponent<Rigidbody2D>(); 
+        base.OnStartServer();
+
+        body = GetComponent<Rigidbody2D>();
+        body.simulated = true; 
+
         audioSource = GetComponent<AudioSource>();
         sinking = GetComponent<Sinking>(); 
     }
@@ -93,7 +97,7 @@ public class JellyFish : NetworkBehaviour
         }
     }
 
-
+    [ServerCallback]
     void OnTriggerEnter2D(Collider2D coll)
     {
         GameObject collidedObject = coll.gameObject;

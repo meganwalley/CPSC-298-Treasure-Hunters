@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror; 
 
-public class Seaweed : MonoBehaviour
+public class Seaweed : NetworkBehaviour
 {
     Rigidbody2D body;
 
@@ -18,9 +19,13 @@ public class Seaweed : MonoBehaviour
     public AudioClip damageSound;
 
 
-    private void Start()
+    public override void OnStartServer()
     {
+        base.OnStartServer();
+
         body = GetComponent<Rigidbody2D>();
+        body.simulated = true;
+
         audioSource = GetComponent<AudioSource>();
 
         float adjustment = 0; 
@@ -42,7 +47,7 @@ public class Seaweed : MonoBehaviour
 
     }
 
-
+    [ServerCallback]
     void OnTriggerEnter2D(Collider2D coll)
     {
         GameObject collidedObject = coll.gameObject;
@@ -53,7 +58,7 @@ public class Seaweed : MonoBehaviour
             AfterEffect();
         }
     }
-
+    [ServerCallback]
     private void OnTriggerExit2D(Collider2D coll)
     {
         GameObject collidedObject = coll.gameObject;

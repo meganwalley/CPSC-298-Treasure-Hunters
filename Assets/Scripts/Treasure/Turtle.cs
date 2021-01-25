@@ -5,6 +5,7 @@ using Mirror;
 
 public class Turtle : NetworkBehaviour
 {
+
     Rigidbody2D body;
     Animator animator;
     public GameObject coinPrefab;
@@ -20,10 +21,14 @@ public class Turtle : NetworkBehaviour
     public bool isActive = true;
 
 
-    private void Start()
+    public override void OnStartServer()
     {
-        audioSource = GetComponent<AudioSource>();
+        base.OnStartServer();
+
         body = GetComponent<Rigidbody2D>();
+        body.simulated = true;
+
+        audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>();
 
         InvokeRepeating("ReleaseTreasure", 1, 0.5f); 
@@ -44,7 +49,7 @@ public class Turtle : NetworkBehaviour
 
     private void ReleaseTreasure()
     {
-        SpawnCoin();
+        SpawnCoin(); 
     }
 
     public void SpawnCoin()
@@ -59,6 +64,7 @@ public class Turtle : NetworkBehaviour
                 Quaternion.identity);
         coinInstante.GetComponent<LeftMoving>().enabled = false;
         coinInstante.GetComponent<Sinking>().enabled = true;
+        NetworkServer.Spawn(coinInstante); 
     }
 
     private void SoundEffect()

@@ -5,6 +5,7 @@ using Mirror;
 
 public class Coin : NetworkBehaviour
 {
+    Rigidbody2D body; 
 
     public int value=1;
     private AudioSource audioSource;
@@ -15,18 +16,19 @@ public class Coin : NetworkBehaviour
 
     public float moveSpeed = 5f; //how fast this moves across the map
 
-    private void Start()
+    public override void OnStartServer()
     {
+        base.OnStartServer();
+
+        body = GetComponent<Rigidbody2D>();
+        body.simulated = true;
+
         audioSource = GetComponent<AudioSource>();
     }
 
 
 
-
-
-
-
-
+    [ServerCallback]
     void OnTriggerEnter2D(Collider2D coll)
     {
         if (!isActive)

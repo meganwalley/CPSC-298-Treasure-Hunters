@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 5202071984058981927}
   - component: {fileID: 5202071984058981944}
   - component: {fileID: 5202071984058981945}
+  - component: {fileID: -1687580590972652426}
   m_Layer: 0
   m_Name: Seaweed-Small
   m_TagString: Untagged
@@ -148,6 +149,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7739a3eeb719a794f83a6bc1e462f2c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   type: 2
   damage: 1
   textEffect: {fileID: 5022295227983901486, guid: 689e05f1c41d14443a6da66568b4c9ac, type: 3}
@@ -297,3 +300,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-1687580590972652426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5202071984058981946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f74aedd71d9a4f55b3ce499326d45fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  clientAuthority: 0
+  localPositionSensitivity: 0.01
+  localRotationSensitivity: 0.01
+  localScaleSensitivity: 0.01

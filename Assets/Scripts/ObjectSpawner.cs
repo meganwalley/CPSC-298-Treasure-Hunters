@@ -1,9 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror; 
 
-public class ObjectSpawner : MonoBehaviour
+public class ObjectSpawner : NetworkManager
 {
+
+    //game 
+    public bool isStarted = false; 
+
     //time
     float timeRemaining = 0;
     float timeCount = 0;
@@ -40,11 +45,28 @@ public class ObjectSpawner : MonoBehaviour
     public int anchorSpawnWeight = 0;
     public int smallSeaweedSpawnWeight = 0;
     public int bigSeaweedSpawnWeight = 0;
-    public int emptyEnemyWeight = 0; 
+    public int emptyEnemyWeight = 0;
+
+    public override void OnServerAddPlayer(NetworkConnection conn)
+    {
+        isStarted = true;
+        GameObject player = Instantiate(playerPrefab, Vector2.zero, Quaternion.identity);
+        NetworkServer.AddPlayerForConnection(conn, player);
+
+        // spawn ball if two players
+        if (numPlayers >= 2)
+        {
+            //do nothing
+        }
+    }
 
 
     private void Update()
     {
+        if (!isStarted)
+        {
+            return; 
+        }
         if(timeCount >= spawnInterval)
         {
             WeightedRandomTreasureSpawn();
@@ -120,57 +142,74 @@ public class ObjectSpawner : MonoBehaviour
 
     public void SpawnCoin()
     {
-        Instantiate(coinPrefab,
+        GameObject newObject = Instantiate(coinPrefab,
                 spawnLocations[Random.Range(0, spawnLocations.Count)].transform.position,
                 Quaternion.identity);
+        NetworkServer.Spawn(newObject); 
     }
     public void SpawnRubby()
     {
-        Instantiate(rubyPrefab,
+        GameObject newObject = Instantiate(rubyPrefab,
                 spawnLocations[Random.Range(0, spawnLocations.Count)].transform.position,
                 Quaternion.identity);
+        NetworkServer.Spawn(newObject);
     }
     public void SpawnTreasureChest()
     {
-        Instantiate(treasureChestPrefab,
+        GameObject newObject = Instantiate(treasureChestPrefab,
                 spawnLocations[spawnLocations.Count-1].transform.position,
                 Quaternion.identity);
+        NetworkServer.Spawn(newObject);
     }
     public void SpawnTurtle()
     {
-        Instantiate(turtlePrefab,
+        GameObject newObject = Instantiate(turtlePrefab,
                 spawnLocations[Random.Range(0, spawnLocations.Count)].transform.position,
                 Quaternion.identity);
+        NetworkServer.Spawn(newObject);
     }
 
     public void SpawnJellyFish()
     {
-        Instantiate(jellyFishPrefab,
+        GameObject newObject = Instantiate(jellyFishPrefab,
                 spawnLocations[Random.Range(1, spawnLocations.Count - 1)].transform.position,
                 Quaternion.identity);
+        NetworkServer.Spawn(newObject);
     }
     public void SpawnSwordfish()
     {
-        Instantiate(swordfishPrefab,
+        GameObject newObject = Instantiate(swordfishPrefab,
                 spawnLocations[Random.Range(1, spawnLocations.Count - 2)].transform.position,
                 Quaternion.identity);
+        NetworkServer.Spawn(newObject);
     }
     public void SpawnAnchor()
     {
-        Instantiate(anchorPrefab,
+        GameObject newObject = Instantiate(anchorPrefab,
                 upperSpawnLocations[Random.Range(1, spawnLocations.Count - 1)].transform.position,
                 Quaternion.identity);
+        NetworkServer.Spawn(newObject);
     }
     public void SpawnSmallSeaweed()
     {
-        Instantiate(smallSeaweedPrefab,
+        GameObject newObject = Instantiate(smallSeaweedPrefab,
                 spawnLocations[spawnLocations.Count - 1].transform.position,
                 Quaternion.identity);
+        NetworkServer.Spawn(newObject);
     }
     public void SpawnBigSeaweed()
     {
-        Instantiate(bigSeaweedPrefab,
+        GameObject newObject = Instantiate(bigSeaweedPrefab,
                 spawnLocations[spawnLocations.Count - 1].transform.position,
                 Quaternion.identity);
+        NetworkServer.Spawn(newObject);
+    }
+
+
+
+    public override void OnServerDisconnect(NetworkConnection conn)
+    {
+        
+        base.OnServerDisconnect(conn);
     }
 }

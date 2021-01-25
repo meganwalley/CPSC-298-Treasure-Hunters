@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror; 
 
-public class TreasureChest : MonoBehaviour
+public class TreasureChest : NetworkBehaviour
 {
     Rigidbody2D body;
     Animator animator;
@@ -24,10 +25,14 @@ public class TreasureChest : MonoBehaviour
     public bool isActive = true;
 
 
-    private void Start()
+    public override void OnStartServer()
     {
-        audioSource = GetComponent<AudioSource>();
+        base.OnStartServer();
+
         body = GetComponent<Rigidbody2D>();
+        body.simulated = true;
+
+        audioSource = GetComponent<AudioSource>();
         animator = GetComponent<Animator>(); 
     }
 
@@ -43,7 +48,7 @@ public class TreasureChest : MonoBehaviour
     }
 
 
-
+    [ServerCallback]
     void OnTriggerEnter2D(Collider2D coll)
     {
         if (!isActive)
@@ -124,7 +129,8 @@ public class TreasureChest : MonoBehaviour
         GameObject coinInstante = Instantiate(coinPrefab,
                 spawnPosition,
                 Quaternion.identity);
-        coinInstante.GetComponent<LeftMoving>().enabled = false; 
+        coinInstante.GetComponent<LeftMoving>().enabled = false;
+        NetworkServer.Spawn(coinInstante);
     }
     public void SpawnRuby()
     {
@@ -133,9 +139,10 @@ public class TreasureChest : MonoBehaviour
         Vector2 spawnPosition = transform.position;
         spawnPosition.x += randFloat1;
         spawnPosition.y += randFloat2;
-        Instantiate(rubyPrefab,
+        GameObject rubyInstante = Instantiate(rubyPrefab,
                 spawnPosition,
                 Quaternion.identity);
+        NetworkServer.Spawn(rubyInstante);
     }
 
     private void SoundEffect()

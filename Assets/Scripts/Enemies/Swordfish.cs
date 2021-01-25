@@ -19,9 +19,13 @@ public class Swordfish : NetworkBehaviour
     public AudioClip damageSound;
 
 
-    private void Start()
+    public override void OnStartServer()
     {
+        base.OnStartServer();
+
         body = GetComponent<Rigidbody2D>();
+        body.simulated = true;
+
         audioSource = GetComponent<AudioSource>();
         SoundEffect(); 
     }
@@ -31,7 +35,7 @@ public class Swordfish : NetworkBehaviour
 
     }
 
-
+    [ServerCallback]
     void OnTriggerEnter2D(Collider2D coll)
     {
         GameObject collidedObject = coll.gameObject;
@@ -39,7 +43,7 @@ public class Swordfish : NetworkBehaviour
         {
             TriggerEffect(collidedObject);
             DamageSoundEffect();
-            collidedObject.GetComponent<Player>().DamageEffect(10);
+            collidedObject.GetComponent<Player>().DamageEffect(2);
             AfterEffect();
         }
     }

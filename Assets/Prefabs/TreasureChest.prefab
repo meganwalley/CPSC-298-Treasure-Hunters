@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 3937381729578391705}
   - component: {fileID: 3937381729578391702}
   - component: {fileID: 3937381729578391701}
+  - component: {fileID: 2010296221319376292}
   m_Layer: 0
   m_Name: TreasureChest
   m_TagString: Untagged
@@ -101,6 +102,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8a1ce3668bda7f4abff0473788fdbd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
   coinPrefab: {fileID: 2518945439772841190, guid: 91f5786403ad27648a8d6c0a858db2d6, type: 3}
   rubyPrefab: {fileID: 4459798096886664614, guid: 3dfd288f3ea099a4b8118fc054ae6cce, type: 3}
   textEffect: {fileID: 5022295227983901486, guid: 689e05f1c41d14443a6da66568b4c9ac, type: 3}
@@ -294,3 +297,21 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2010296221319376292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3937381729578391708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f74aedd71d9a4f55b3ce499326d45fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  clientAuthority: 0
+  localPositionSensitivity: 0.01
+  localRotationSensitivity: 0.01
+  localScaleSensitivity: 0.01

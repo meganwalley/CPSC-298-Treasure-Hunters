@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror; 
 
-public class Anchor : MonoBehaviour
+public class Anchor : NetworkBehaviour
 {
     Rigidbody2D body;
 
@@ -19,12 +20,16 @@ public class Anchor : MonoBehaviour
     public AudioClip landSound;
 
 
-    private bool isActive = true; 
+    private bool isActive = true;
 
 
-    private void Start()
+    public override void OnStartServer()
     {
+        base.OnStartServer();
+
         body = GetComponent<Rigidbody2D>();
+        body.simulated = true;
+
         audioSource = GetComponent<AudioSource>();
         SoundEffect();
     }
@@ -38,6 +43,7 @@ public class Anchor : MonoBehaviour
     }
 
 
+    [ServerCallback]
     private void OnCollisionEnter2D(Collision2D coll)
     {
         if (!isActive)
@@ -49,14 +55,9 @@ public class Anchor : MonoBehaviour
         {
             TriggerEffect(collidedObject);
             DamageSoundEffect();
-            collidedObject.GetComponent<Player>().DamageEffect(10);
+            collidedObject.GetComponent<Player>().DamageEffect(2);
             AfterEffect();
         }
-    }
-
-    void OnTriggerEnter2D(Collider2D coll)
-    {
-
     }
 
     private void TriggerEffect(GameObject collidedObject)

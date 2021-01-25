@@ -29,13 +29,15 @@ public class Player : NetworkBehaviour
 
     //for UI
     int currScore = 0;
-    public GameObject ScoreBoard; 
+    public GameObject ScoreBoard;
 
 
 
     void Start()
     {
+
         body = GetComponent<Rigidbody2D>();
+
         moveSpeed = rawMoveSpeed; 
     }
     void Update()
@@ -114,6 +116,7 @@ public class Player : NetworkBehaviour
 
 
     //collision and triggers
+    [ServerCallback]
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag.Equals("WallCollider"))
@@ -121,6 +124,7 @@ public class Player : NetworkBehaviour
             inWallCollision = true;
         }
     }
+    [ServerCallback]
     void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.tag.Equals("WallCollider"))
