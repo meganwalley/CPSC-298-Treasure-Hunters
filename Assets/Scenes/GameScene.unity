@@ -4200,6 +4200,7 @@ MonoBehaviour:
   coinPrefab: {fileID: 2518945439772841190, guid: 91f5786403ad27648a8d6c0a858db2d6, type: 3}
   rubyPrefab: {fileID: 4459798096886664614, guid: 3dfd288f3ea099a4b8118fc054ae6cce, type: 3}
   treasureChestPrefab: {fileID: 3937381729578391708, guid: 8491b07e6267dd2438b2a1eb2aed1f77, type: 3}
+  turtlePrefab: {fileID: 1039800219425335300, guid: 3aa43462248562a499297bcc19d9dd58, type: 3}
   spawnLocations:
   - {fileID: 97887081}
   - {fileID: 1997370011}
@@ -4212,9 +4213,10 @@ MonoBehaviour:
   - {fileID: 1771401663}
   jellyFishPrefab: {fileID: 3336694328329913813, guid: 9d111c34b9df9994992c4c9aa292702d, type: 3}
   coinSpawnWeight: 60
-  rubbySpawnWeight: 25
-  treasureChestSpawnWeight: 15
-  emptyTreasureWeight: 0
+  rubbySpawnWeight: 15
+  treasureChestSpawnWeight: 12
+  turtleSpawnWeight: 8
+  emptyTreasureWeight: 5
   jellyFishSpawnWeight: 10
   emptyEnemyWeight: 90
 --- !u!1001 &1615764855

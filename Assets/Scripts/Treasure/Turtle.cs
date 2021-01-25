@@ -1,0 +1,72 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class Turtle : MonoBehaviour
+{
+    Rigidbody2D body;
+    Animator animator;
+    public GameObject coinPrefab;
+    public GameObject rubyPrefab;
+
+    public bool isReleasingTreasure = false;
+    public int currTimeCount = 0;
+    public int releaseInterval = 30;
+    public int currReleaseCount = 0;
+    public int releaseCount = 10;
+
+    private AudioSource audioSource;
+    public bool isActive = true;
+
+
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+        body = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+
+        InvokeRepeating("ReleaseTreasure", 1, 0.5f); 
+    }
+
+    private void Update()
+    {
+
+    }
+
+
+
+    void OnTriggerEnter2D(Collider2D coll)
+    {
+
+    }
+
+
+    private void ReleaseTreasure()
+    {
+        SpawnCoin();
+    }
+
+    public void SpawnCoin()
+    {
+        float randFloat1 = Random.Range(0, 1);
+        float randFloat2 = Random.Range(0, 3);
+        Vector2 spawnPosition = transform.position;
+        spawnPosition.x += randFloat1;
+        spawnPosition.y += randFloat2;
+        GameObject coinInstante = Instantiate(coinPrefab,
+                spawnPosition,
+                Quaternion.identity);
+        coinInstante.GetComponent<LeftMoving>().enabled = false;
+        coinInstante.GetComponent<Sinking>().enabled = true;
+    }
+
+    private void SoundEffect()
+    {
+        audioSource.Play();
+    }
+
+    private void AfterEffect()
+    {
+
+    }
+}

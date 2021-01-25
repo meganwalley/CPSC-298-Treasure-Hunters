@@ -72,7 +72,6 @@ public class TreasureChest : MonoBehaviour
     private void DetermineChestType()
     {
         int randInt = Random.Range(0, 2);
-        Debug.Log(randInt); 
         if(randInt == 1)
         {
             isGood = true; 

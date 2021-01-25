@@ -13,6 +13,7 @@ public class ObjectSpawner : MonoBehaviour
     public GameObject coinPrefab;
     public GameObject rubyPrefab;
     public GameObject treasureChestPrefab;
+    public GameObject turtlePrefab;
     public List<GameObject> spawnLocations;
 
     //Prefab - Enemies
@@ -24,6 +25,7 @@ public class ObjectSpawner : MonoBehaviour
     public int coinSpawnWeight = 0;
     public int rubbySpawnWeight = 0;
     public int treasureChestSpawnWeight = 0;
+    public int turtleSpawnWeight = 0; 
     public int emptyTreasureWeight = 0; 
     //for enemies (calculated in a different pool from the treasures); 
     public int jellyFishSpawnWeight = 0;
@@ -51,7 +53,7 @@ public class ObjectSpawner : MonoBehaviour
 
     private void WeightedRandomTreasureSpawn()
     {
-        int totalWeight = coinSpawnWeight + rubbySpawnWeight + treasureChestSpawnWeight;
+        int totalWeight = coinSpawnWeight + rubbySpawnWeight + treasureChestSpawnWeight + turtleSpawnWeight + emptyEnemyWeight; 
         int randomNum = Random.Range(0, totalWeight); 
         if(0 <= randomNum && randomNum <= coinSpawnWeight)
         {
@@ -64,6 +66,14 @@ public class ObjectSpawner : MonoBehaviour
         else if((coinSpawnWeight + rubbySpawnWeight) < randomNum && randomNum <= (coinSpawnWeight + rubbySpawnWeight + treasureChestSpawnWeight))
         {
             SpawnTreasureChest(); 
+        }
+        else if((coinSpawnWeight + rubbySpawnWeight + treasureChestSpawnWeight) < randomNum && randomNum <= (coinSpawnWeight + rubbySpawnWeight + treasureChestSpawnWeight + turtleSpawnWeight))
+        {
+            SpawnTurtle(); 
+        }
+        else
+        {
+            //do nothing; 
         }
     }
 
@@ -105,6 +115,12 @@ public class ObjectSpawner : MonoBehaviour
     {
         Instantiate(treasureChestPrefab,
                 spawnLocations[spawnLocations.Count-1].transform.position,
+                Quaternion.identity);
+    }
+    public void SpawnTurtle()
+    {
+        Instantiate(turtlePrefab,
+                spawnLocations[Random.Range(0, spawnLocations.Count)].transform.position,
                 Quaternion.identity);
     }
 
