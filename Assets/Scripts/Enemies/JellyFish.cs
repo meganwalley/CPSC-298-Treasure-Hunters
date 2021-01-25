@@ -8,7 +8,7 @@ public class JellyFish : NetworkBehaviour
     Rigidbody2D body;
     Sinking sinking; 
 
-    public int damage = -1;
+    public int damage = 1;
     private AudioSource audioSource;
     //public bool isActive = true;
 

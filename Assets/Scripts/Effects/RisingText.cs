@@ -14,7 +14,7 @@ public class RisingText : MonoBehaviour
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
-        Destroy(gameObject, 500);
+        Destroy(gameObject, 5);
         Invoke("StartFadingOut", timeBeforeFadingOut / 60); 
     }
 

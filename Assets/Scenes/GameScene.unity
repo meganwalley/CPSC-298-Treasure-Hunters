@@ -4212,13 +4212,15 @@ MonoBehaviour:
   - {fileID: 310854065}
   - {fileID: 1771401663}
   jellyFishPrefab: {fileID: 3336694328329913813, guid: 9d111c34b9df9994992c4c9aa292702d, type: 3}
+  swordfishPrefab: {fileID: 8567851323240511194, guid: 6c3c01c57a5640a4d82f16f00f605bab, type: 3}
   coinSpawnWeight: 60
   rubbySpawnWeight: 15
   treasureChestSpawnWeight: 12
   turtleSpawnWeight: 8
   emptyTreasureWeight: 5
   jellyFishSpawnWeight: 10
-  emptyEnemyWeight: 90
+  swordfishSpawnWeight: 5
+  emptyEnemyWeight: 85
 --- !u!1001 &1615764855
 PrefabInstance:
   m_ObjectHideFlags: 0

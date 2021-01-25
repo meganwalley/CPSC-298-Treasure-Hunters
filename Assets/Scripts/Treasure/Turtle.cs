@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Mirror; 
 
-public class Turtle : MonoBehaviour
+public class Turtle : NetworkBehaviour
 {
     Rigidbody2D body;
     Animator animator;

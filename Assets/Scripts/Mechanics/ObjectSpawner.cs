@@ -17,7 +17,8 @@ public class ObjectSpawner : MonoBehaviour
     public List<GameObject> spawnLocations;
 
     //Prefab - Enemies
-    public GameObject jellyFishPrefab; 
+    public GameObject jellyFishPrefab;
+    public GameObject swordfishPrefab;
 
 
     //these number represents how likely these items will be spawned
@@ -29,6 +30,7 @@ public class ObjectSpawner : MonoBehaviour
     public int emptyTreasureWeight = 0; 
     //for enemies (calculated in a different pool from the treasures); 
     public int jellyFishSpawnWeight = 0;
+    public int swordfishSpawnWeight = 0; 
     public int emptyEnemyWeight = 0; 
 
 
@@ -85,10 +87,10 @@ public class ObjectSpawner : MonoBehaviour
         {
             SpawnJellyFish();
         }
-        //else if (jellyFishSpawnWeight < randomNum && randomNum <= (jellyFishSpawnWeight + emptyEnemyWeight))
-        //{
-
-        //}
+        else if (jellyFishSpawnWeight < randomNum && randomNum <= (jellyFishSpawnWeight + swordfishSpawnWeight))
+        {
+            SpawnSwordfish(); 
+        }
         //else if ((coinSpawnWeight + rubbySpawnWeight) < randomNum && randomNum <= (coinSpawnWeight + rubbySpawnWeight + treasureChestSpawnWeight))
         //{
         //    SpawnTreasureChest();
@@ -128,6 +130,12 @@ public class ObjectSpawner : MonoBehaviour
     {
         Instantiate(jellyFishPrefab,
                 spawnLocations[Random.Range(1, spawnLocations.Count - 1)].transform.position,
+                Quaternion.identity);
+    }
+    public void SpawnSwordfish()
+    {
+        Instantiate(swordfishPrefab,
+                spawnLocations[Random.Range(1, spawnLocations.Count - 2)].transform.position,
                 Quaternion.identity);
     }
 }
