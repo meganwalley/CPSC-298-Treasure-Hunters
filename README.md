@@ -1,20 +1,30 @@
 # Treasure-Hunters
- 
+
+**Controls:**
+W moves the player up
+S moves the player down
+A moves the player backwards
+D moves the player forwards
+
 
 **Team Member Credits:**
 Chis Galdi
 * treasure art
-* treasure effect art
 * treasure chest art
+* treasure effect art
 * seaweed art
 * turtle art
 * swordfish art
 * anchor art
 
 Raymond Yan
+* treasure effect art
+* score text effect
+* treasure pickup effect
+* audio system
 * player mechanics
 * coin mechanics
-* rubby mechanics
+* ruby mechanics
 * treasure chest mechanics
 * turtle mechanics
 * jellyfish mechanics
@@ -23,26 +33,22 @@ Raymond Yan
 * seaweed mechanics
 * general game mechanics
 * Networking mechanics
-* score text effect
-* treasure pickup effect
-* audio/ audio system
-* treasure art
-* treasure effect art
-* treasure chest art
-* anchor art
-
 
 Will
+* lobby/menu 
+* timer mechanic
 
 Megan Walley
+* background art
+* fish art
+* eel art
+* pink fish art
+* coins/jewels art
+* player art
+* title and UI art
 * player movement
 * background effects
 * general game mechanics
-* background art
-* player art
-* title and UI art
-* fish art
-* treasure art
 
 **Audio Sources:**
 TreasureCollection: https://freesound.org/people/ProjectsU012/sounds/341695/  
