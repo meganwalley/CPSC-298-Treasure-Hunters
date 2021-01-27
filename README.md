@@ -16,6 +16,13 @@ Chis Galdi
 * turtle art
 * swordfish art
 * anchor art
+* starfish art
+* turtle art
+* jellyfish art
+* life vest art
+* fish art
+* coin design art
+
 
 Raymond Yan
 * treasure effect art
