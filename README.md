@@ -1,10 +1,10 @@
 # Treasure-Hunters
 
-**Controls:**
-W moves the player up
-S moves the player down
-A moves the player backwards
-D moves the player forwards
+**Controls:**  
+W moves the player up  
+S moves the player down  
+A moves the player backwards  
+D moves the player forwards  
 
 
 **Team Member Credits:**
