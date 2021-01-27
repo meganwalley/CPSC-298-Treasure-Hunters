@@ -34,7 +34,7 @@ Raymond Yan
 * general game mechanics
 * Networking mechanics
 
-Will
+Will Crewe
 * lobby/menu 
 * timer mechanic
 
