@@ -40,9 +40,7 @@ Will Crewe
 
 Megan Walley
 * background art
-* fish art
-* eel art
-* pink fish art
+* background fish/eel/pink fish art
 * coins/jewels art
 * player art
 * title and UI art
